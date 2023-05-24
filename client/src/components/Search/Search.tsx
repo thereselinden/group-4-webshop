@@ -1,7 +1,14 @@
-type Props = {};
+// import SearchIcon from '@mui/icons-material/Search';
+// import IconButton from '@mui/material/IconButton';
 
-const Search = (props: Props) => {
-  return <div>Search</div>;
-};
+// type Props = {};
 
-export default Search;
+// const Search = (props: Props) => {
+//   return (
+//     <IconButton aria-label="add to shopping cart">
+//       <SearchIcon sx={{ color: 'white' }} />
+//     </IconButton>
+//   );
+// };
+
+// export default Search;
