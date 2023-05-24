@@ -3,7 +3,7 @@
 type Props = {};
 
 const App = (props: Props) => {
-  return <div>App</div>;
+  return <div>App igen</div>;
 };
 
 export default App;
