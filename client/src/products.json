@@ -1,0 +1,153 @@
+
+ [
+    {
+      "title": "Beanie",
+      "description": "En ribbstickad beanie i en tidlös design gjord av mjuk alpacka, återvunnen polyester och ull från hållbara källor. Den har en nära passform och en bred kant som är lika fin uppvikt som nedvikt.",
+      "price": 349,
+      "inStock": 24,
+      "categories": [{"_id": "646dfc55b53de78ff803ef93"}],
+      "image": "https://i.ibb.co/jHs77vQ/beanie-2-768x768.jpg"
+    },
+    {
+      "title": "Beanie - Logo",
+      "description": "En ribbstickad beanie med logga. För en tidlös design gjord av mjuk alpacka, återvunnen polyester och ull från hållbara källor. Den har en nära passform och en bred kant som är lika fin uppvikt som nedvikt.",
+      "price": 499,
+      "inStock": 13,
+      "categories":  [{"_id": "646dfc55b53de78ff803ef93"}],
+      "image": "https://i.ibb.co/bRBFBkL/beanie-with-logo-1-768x768.jpg"
+    },
+    {
+      "title": "Bälte",
+      "description": "Ett klassiskt bälte i läder. Lädret har genomgått en kromfri garvningsprocess vilket innebär att skinnet omvandlas till ett mjukt och smidigt läder med hjälp av vegetabiliska och syntetiska ämnen istället för kromsulfat.",
+      "price": 229,
+      "inStock": 6,
+      "categories":  [{"_id": "646dfc55b53de78ff803ef93"}],
+      "image": "https://i.ibb.co/3F0bN4Y/belt-2-768x768.jpg"
+    },
+    {
+      "title": "Keps",
+      "description": "Klassisk 5-panelskeps i en blandning av linne och rami. Reglerbar rem med metallspänne bak.",
+      "price": 390,
+      "inStock": 17,
+      "categories":  [{"_id": "646dfc55b53de78ff803ef93"}],
+      "image": "https://i.ibb.co/m50YyHL/cap-2-768x768.jpg"
+    },
+    {
+      "title": "Hoodie",
+      "description": "Klassisk hoodie gjord i ett vackert och skönt fleeced ekologiskt bomullstyg med stor stabilitet.",
+      "price": 1400,
+      "inStock": 3,
+      "categories":  [{"_id": "646dfbe0b53de78ff803ef8f"}],
+      "image": "https://i.ibb.co/19JdZ0Z/hoodie-2-768x768.jpg"
+    },
+    {
+      "title": "Hoodie",
+      "description": "Klassisk hoodie gjord i ett vackert och skönt fleeced ekologiskt bomullstyg med stor stabilitet.",
+      "price": 1400,
+      "inStock": 3,
+      "categories":  [{"_id": "646dfbe0b53de78ff803ef8f"}],
+      "image": "https://i.ibb.co/0Mwzz5p/hoodie-blue-1-768x768.jpg"
+    },
+    {
+      "title": "Hoodie",
+      "description": "Klassisk hoodie gjord i ett vackert och skönt fleeced ekologiskt bomullstyg med stor stabilitet.",
+      "price": 1400,
+      "inStock": 3,
+      "categories":  [{"_id": "646dfbe0b53de78ff803ef8f"}],
+      "image": "https://i.ibb.co/k1Jc7jr/hoodie-green-1-768x768.jpg"
+    },
+    {
+      "title": "Hoodie - Logo",
+      "description": "Klassisk hoodie gjord i ett vackert och skönt fleeced ekologiskt bomullstyg med stor stabilitet. Logo på framsidan.",
+      "price": 1300,
+      "inStock": 9,
+      "categories":  [{"_id": "646dfbe0b53de78ff803ef8f"}],
+      "image": "https://i.ibb.co/Dt75MXD/hoodie-with-logo-2-768x768.jpg"
+    },
+    {
+      "title": "Hoodie - Med ficka",
+      "description": "Klassisk hoodie med ficka på framsidan, gjord i ett vackert och skönt fleeced ekologiskt bomullstyg med stor stabilitet.",
+      "price": 1300,
+      "inStock": 9,
+      "categories":  [{"_id": "646dfbe0b53de78ff803ef8f"}],
+      "image": "https://i.ibb.co/W54ZvB8/hoodie-with-pocket-2-768x768.jpg"
+    },
+    {
+      "title": "Hoodie - Dragkedja",
+      "description": "Klassisk hoodie med dragkedja, gjord i ett vackert och skönt fleeced ekologiskt bomullstyg med stor stabilitet.",
+      "price": 1700,
+      "inStock": 13,
+      "categories":  [{"_id": "646dfbe0b53de78ff803ef8f"}],
+      "image": "https://i.ibb.co/JxDyQj2/hoodie-with-zipper-2-768x768.jpg"
+    },
+    {
+      "title": "Longsleeve tee",
+      "description": "Vår långärmade T-shirt är tillverkad av en anpassad tungviktskammad ekologisk bomull som är designad för att hålla dig sval och klippt för en rak passform som ger en skarp men ändå bekväm drapering.",
+      "price": 599,
+      "inStock": 15,
+      "categories":  [{"_id": "646dfc15b53de78ff803ef91"}],
+      "image": "https://i.ibb.co/rGgXHZ7/long-sleeve-tee-2-768x768.jpg"
+    },
+    {
+      "title": "Pique Polo",
+      "description": "Piké-pikétröjan fyller utrymmet mellan skjortan och t-shirten. Kärnan är en specialutvecklad mjuk och rejäl stickad organisk bomull som andas.",
+      "price": 800,
+      "inStock": 19,
+      "categories":  [{"_id": "646dfc15b53de78ff803ef91"}],
+      "image": "https://i.ibb.co/HGP7Fj4/polo-2-768x767.jpg"
+    },
+    
+    },
+    {
+      "title": "Sunglasses 05 Green",
+      "description": "05 är en formstark rektangulär silhuett med skarpa, arkitektoniska drag. Den minimalistiska ramen är handgjord i italienskt acetat, med linjära skalmar för en stilren look.",
+      "price": 1900,
+      "inStock": 17,
+      "categories":  [{"_id": "646dfc55b53de78ff803ef93"}],
+      "image": "https://i.ibb.co/F66Yjgs/sunglasses-2-768x768.jpg"
+
+    },
+    {
+      "title": "Shortsleve tee - Logo",
+      "description": "Vår kortärmade T-shirt med logga framtill är tillverkad av en anpassad tungviktskammad ekologisk bomull som är designad för att hålla dig sval och klippt för en rak passform som ger en skarp men ändå bekväm drapering.",
+      "price": 499,
+      "inStock": 15,
+      "categories":  [{"_id": "646dfc15b53de78ff803ef91"}],
+      "image": "https://i.ibb.co/QJNc78P/t-shirt-with-logo-1-768x768.jpg"
+     
+    },
+    {
+      "title": "Shortsleve tee ",
+      "description": "Vår kortärmade T-shirt  är tillverkad av en anpassad tungviktskammad ekologisk bomull som är designad för att hålla dig sval och klippt för en rak passform som ger en skarp men ändå bekväm drapering.",
+      "price": 399,
+      "inStock": 8,
+      "categories":  [{"_id": "646dfc15b53de78ff803ef91"}],
+      "image": "https://i.ibb.co/PFmmbtk/tshirt-2-768x768.jpg"
+ 
+    },
+    {
+      "title": "Shortsleve tee v-neck ",
+      "description": "Vår kortärmade T-shirt med v-neck formad hals är tillverkad av en anpassad tungviktskammad ekologisk bomull som är designad för att hålla dig sval och klippt för en rak passform som ger en skarp men ändå bekväm drapering.",
+      "price": 379,
+      "inStock": 18,
+      "categories":  [{"_id": "646dfc15b53de78ff803ef91"}],
+      "image": "https://i.ibb.co/jfRGPMs/vnech-tee-blue-1-768x768.jpg"
+     
+    },
+    {
+      "title": "Shortsleve tee v-neck ",
+      "description": "Vår kortärmade T-shirt med v-neck formad hals är tillverkad av en anpassad tungviktskammad ekologisk bomull som är designad för att hålla dig sval och klippt för en rak passform som ger en skarp men ändå bekväm drapering.",
+      "price": 379,
+      "inStock": 14,
+      "categories":  [{"_id": "646dfc15b53de78ff803ef91"}],
+      "image": "https://i.ibb.co/bKC2zvQ/vnech-tee-green-1-768x768.jpg"
+    },
+    {
+      "title": "Shortsleve tee v-neck ",
+      "description": "Vår kortärmade T-shirt med v-neck formad hals är tillverkad av en anpassad tungviktskammad ekologisk bomull som är designad för att hålla dig sval och klippt för en rak passform som ger en skarp men ändå bekväm drapering.",
+      "price": 379,
+      "inStock": 2,
+      "categories":  [{"_id": "646dfc15b53de78ff803ef91"}],
+      "image": "https://i.ibb.co/GJXNd7M/vneck-tee-2-768x767.jpg"
+    }
+  ]
