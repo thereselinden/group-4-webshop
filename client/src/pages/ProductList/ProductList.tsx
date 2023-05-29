@@ -3,11 +3,7 @@ import useFetch from '../../hooks/useFetch';
 //type Props = {};
 
 const ProductList = () => {
-  const {
-    data: products,
-    isLoading,
-    errorMessage,
-  } = useFetch('/api/productss');
+  const { data: products, isLoading, errorMessage } = useFetch('/api/products');
 
   console.log(products, 'isLoading:', isLoading);
   return (
