@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
-const useFetch = (url: string) => {
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+const useFetch = <T,>(url: string) => {
+  const [data, setData] = useState<T | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
