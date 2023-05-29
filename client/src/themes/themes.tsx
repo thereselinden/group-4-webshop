@@ -11,6 +11,13 @@ declare module '@mui/material/styles' {
   }
 }
 
+declare module '@mui/material/Button' {
+  interface ButtonPropsColorOverrides {
+    textColor: true;
+    accent: true;
+  }
+}
+
 declare module '@mui/material/IconButton' {
   interface IconButtonPropsColorOverrides {
     textColor: true;
