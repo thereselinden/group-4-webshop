@@ -13,3 +13,13 @@ export interface IProduct {
   title: string;
   _id: string;
 }
+
+export interface ICartItem {
+  quantity: number;
+  product: IProduct;
+}
+export interface ICartContext {
+  cartItems: ICartItem[];
+  addToCart: (product: IProduct, quantity: number) => void;
+  removeFromCart: (id: string) => void;
+}
