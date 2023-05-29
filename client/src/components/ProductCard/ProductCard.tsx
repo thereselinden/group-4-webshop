@@ -19,7 +19,6 @@ const ProductCard = ({ product }: Props) => {
         image={product.image}
         title={product.title}
       />
-      {/* <CardContent> */}
       <Box sx={{ p: 2 }}>
         <Typography variant="h6" component="div">
           {product.title}
@@ -29,17 +28,15 @@ const ProductCard = ({ product }: Props) => {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
+            mt: 1,
           }}
         >
-          {/* <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}> */}
           <Typography variant="body2" color="text.secondary">
-            {product.price} Kr
+            {product.price} kr
           </Typography>
           <AddToCartBtn />
-          {/* </CardActions> */}
         </Box>
       </Box>
-      {/* </CardContent> */}
     </Card>
   );
 };
