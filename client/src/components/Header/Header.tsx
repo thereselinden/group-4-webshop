@@ -15,6 +15,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import NavLinks from '../NavLinks/NavLinks';
+import { Link } from 'react-router-dom';
 import Cart from '../Cart/Cart';
 import ProfileButton from '../ProfileButton/ProfileButton';
 
@@ -59,7 +60,7 @@ const Header = (props: Props) => {
 
   return (
     <Box sx={{ display: 'flex' }} component="header">
-      {/* <CssBaseline /> */}
+      <CssBaseline />
       <AppBar component="nav">
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <IconButton
@@ -76,7 +77,7 @@ const Header = (props: Props) => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'block' } }}
           >
-            Webbshop
+            <Link to="/">Webbshop</Link>
           </Typography>
           <NavLinks navItems={navItems} />
           <Box>
