@@ -6,7 +6,7 @@ type Props = {};
 const ProfileButton = (props: Props) => {
   return (
     <IconButton aria-label="add to shopping cart">
-      <LoginIcon sx={{ color: 'white' }} />
+      <LoginIcon color="textColor" />
     </IconButton>
   );
 };
