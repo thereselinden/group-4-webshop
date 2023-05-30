@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import { yellow } from '@mui/material/colors';
+import { yellow, grey } from '@mui/material/colors';
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -8,8 +8,7 @@ declare module '@mui/material/styles' {
   }
   interface PaletteOptions {
     textColor: { main: string; light: string };
-    textColor1: { main: string };
-    accent: { background: string; color: string };
+    accent: { main: string };
   }
 }
 
@@ -17,7 +16,6 @@ declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
     textColor: true;
     accent: true;
-    textColor1: true;
   }
 }
 
@@ -36,9 +34,8 @@ export const theme = createTheme({
     secondary: {
       main: '#EBEBEB',
     },
-    textColor: { main: '#565252', light: '#ccc' },
-    textColor1: { main: yellow[600] },
-    accent: { background: '#E57C23', color: '#fff' },
+    textColor: { main: grey[800] },
+    accent: { main: yellow[600] },
   },
   typography: {
     fontFamily: 'Quicksand',
