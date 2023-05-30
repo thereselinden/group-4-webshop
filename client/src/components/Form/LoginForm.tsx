@@ -2,7 +2,9 @@ import { useForm } from 'react-hook-form';
 import { ILoginForm } from '../../interfaces/interfaces';
 import FormInputField from './FormInputField/FormInputField';
 import Button from '@mui/material/Button';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import LockIcon from '@mui/icons-material/Lock';
 
 type Props = {
   handleAccount: () => void;
@@ -29,26 +31,47 @@ const LoginForm = ({ handleAccount }: Props) => {
 
   return (
     <>
-      <form>
+      <form
+        style={{
+          width: '60%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          margin: '0 auto',
+          gap: 15,
+        }}
+      >
+        <LockIcon color="accent" fontSize="large" />
         <Typography variant="h4">Logga in</Typography>
         <FormInputField
           name="email"
           control={control}
-          label="Email"
+          label="E-postadress"
           minLength={4}
         />
         <FormInputField
           name="password"
           control={control}
-          label="Password"
+          label="Lösenord"
           minLength={3}
         />
 
-        <Button variant="contained" onClick={handleSubmit(onSubmit)}>
+        <Button
+          variant="contained"
+          onClick={handleSubmit(onSubmit)}
+          color="accent"
+        >
           Logga in
         </Button>
+        <Link
+          href="#"
+          underline="hover"
+          color="inherit"
+          onClick={() => handleAccount()}
+        >
+          Registrera dig
+        </Link>
       </form>
-      <Typography onClick={() => handleAccount()}>Registrera dig</Typography>
     </>
   );
 };

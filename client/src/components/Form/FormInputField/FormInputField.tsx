@@ -33,7 +33,8 @@ const FormInputField = ({ name, control, label, minLength }: Props) => {
           value={value}
           fullWidth
           label={label}
-          variant="filled"
+          variant="outlined"
+          color="textColor"
         />
       )}
     />
