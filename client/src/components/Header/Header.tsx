@@ -80,7 +80,7 @@ const Header = (props: Props) => {
             <Link to="/">Webbshop</Link>
           </Typography>
           <NavLinks navItems={navItems} />
-          <Box>
+          <Box sx={{ display: 'flex' }}>
             <ProfileButton />
             <Cart />
             {/* <Search /> */}
