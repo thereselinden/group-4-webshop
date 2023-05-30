@@ -6,13 +6,17 @@ import { ThemeProvider } from '@emotion/react';
 
 import App from './App.tsx';
 import { theme } from './themes/themes.tsx';
+import CartProvider from './context/CartContext.tsx';
+import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-    </BrowserRouter>
+    <CartProvider>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </BrowserRouter>
+    </CartProvider>
   </React.StrictMode>
 );

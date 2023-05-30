@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material/styles';
+import { yellow, grey } from '@mui/material/colors';
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -7,7 +8,7 @@ declare module '@mui/material/styles' {
   }
   interface PaletteOptions {
     textColor: { main: string; light: string };
-    accent: { background: string; color: string };
+    accent: { main: string };
   }
 }
 
@@ -33,7 +34,14 @@ export const theme = createTheme({
     secondary: {
       main: '#EBEBEB',
     },
-    textColor: { main: '#565252', light: '#ccc' },
-    accent: { background: '#E57C23', color: '#fff' },
+    textColor: { main: grey[800] },
+    accent: { main: yellow[600] },
+  },
+  typography: {
+    fontFamily: 'Quicksand',
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 500,
+    fontWeightBold: 600,
   },
 });

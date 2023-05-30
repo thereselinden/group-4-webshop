@@ -1,18 +1,20 @@
+import { MouseEvent } from 'react';
+
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import IconButton from '@mui/material/IconButton';
 
 import { theme } from '../../themes/themes';
 
-type Props = {};
+type Props = {
+  onClick: (e: MouseEvent<HTMLButtonElement>) => void;
+};
 
-const AddToCartBtn = (props: Props) => {
+const AddToCartBtn = ({ onClick }: Props) => {
   return (
     <IconButton
-      style={{
-        backgroundColor: theme.palette.accent.background,
-        color: theme.palette.accent.color,
-      }}
+      color="accent"
       aria-label="add to shopping cart"
+      onClick={e => onClick(e)}
     >
       <AddShoppingCartIcon />
     </IconButton>

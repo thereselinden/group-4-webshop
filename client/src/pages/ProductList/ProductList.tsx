@@ -15,7 +15,6 @@ const ProductList = () => {
     errorMessage,
   } = useFetch<IProduct[]>('/api/products');
 
-  console.log(products, 'isLoading:', isLoading);
   return (
     <>
       {errorMessage && <p>something went wrooooong</p>}

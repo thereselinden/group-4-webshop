@@ -12,10 +12,12 @@ import Button from '@mui/material/Button';
 import { IProduct } from '../../interfaces/interfaces';
 import useFetch from '../../hooks/useFetch';
 import { theme } from '../../themes/themes';
+import { useCartContext } from '../../context/CartContext';
 
 const ProductDetails = () => {
   const [qty, setQty] = useState('1');
   const { id } = useParams();
+  const { addToCart } = useCartContext();
 
   const {
     data: product,
@@ -25,6 +27,10 @@ const ProductDetails = () => {
 
   const handleChange = (event: SelectChangeEvent) => {
     setQty(event.target.value as string);
+  };
+
+  const handleAddToCart = () => {
+    if (product) addToCart(product, parseInt(qty));
   };
 
   return (
@@ -80,10 +86,8 @@ const ProductDetails = () => {
                   variant="contained"
                   size="large"
                   fullWidth
-                  style={{
-                    backgroundColor: theme.palette.accent.background,
-                    color: theme.palette.accent.color,
-                  }}
+                  color="accent"
+                  onClick={handleAddToCart}
                 >
                   Lägg i Shoppingbag
                 </Button>

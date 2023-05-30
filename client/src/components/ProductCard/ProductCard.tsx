@@ -10,10 +10,18 @@ import AddToCartBtn from '../AddToCartBtn/AddToCartBtn';
 import { Box } from '@mui/system';
 import { CardActionArea } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useCartContext } from '../../context/CartContext';
+import { MouseEvent } from 'react';
 
 type Props = { product: IProduct };
 
 const ProductCard = ({ product }: Props) => {
+  const { addToCart } = useCartContext();
+
+  const handleAddToCart = (e: MouseEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
+    addToCart(product, 1);
+  };
   return (
     <Card sx={{ maxWidth: 345 }}>
       <Link to={product._id}>
@@ -24,7 +32,7 @@ const ProductCard = ({ product }: Props) => {
           title={product.title}
         />
         <Box sx={{ p: 2 }}>
-          <Typography variant="h6" component="div">
+          <Typography variant="h6" component="h3">
             {product.title}
           </Typography>
           <Box
@@ -38,7 +46,7 @@ const ProductCard = ({ product }: Props) => {
             <Typography variant="body2" color="text.secondary">
               {product.price} kr
             </Typography>
-            <AddToCartBtn />
+            <AddToCartBtn onClick={handleAddToCart} />
           </Box>
         </Box>
       </Link>
