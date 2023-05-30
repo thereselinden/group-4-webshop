@@ -21,5 +21,7 @@ export interface ICartItem {
 export interface ICartContext {
   cartItems: ICartItem[];
   addToCart: (product: IProduct, quantity: number) => void;
-  removeFromCart: (id: string) => void;
+  removeFromCart: (id: string, qty?: number) => void;
+  calcTotal: () => number;
+  numOfProducts: () => number;
 }
