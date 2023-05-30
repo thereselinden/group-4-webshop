@@ -2,7 +2,9 @@ import { useForm } from 'react-hook-form';
 import { IRegisterForm } from '../../interfaces/interfaces';
 import FormInputField from './FormInputField/FormInputField';
 import Button from '@mui/material/Button';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
 
 type Props = {
   handleAccount: () => void;
@@ -32,7 +34,18 @@ const RegisterForm = ({ handleAccount }: Props) => {
 
   return (
     <>
-      <form>
+      <form
+        style={{
+          width: '60%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          margin: '0 auto',
+          gap: 15,
+        }}
+      >
+        <HowToRegIcon color="accent" fontSize="large" />
+
         <Typography variant="h4">Registrera konto</Typography>
         <FormInputField
           name="firstName"
@@ -61,13 +74,22 @@ const RegisterForm = ({ handleAccount }: Props) => {
           minLength={3}
         />
 
-        <Button variant="contained" onClick={handleSubmit(onSubmit)}>
+        <Button
+          variant="contained"
+          onClick={handleSubmit(onSubmit)}
+          color="accent"
+        >
           Registrera konto
         </Button>
+        <Link
+          color="inherit"
+          underline="hover"
+          style={{ cursor: 'pointer' }}
+          onClick={() => handleAccount()}
+        >
+          Har du redan ett konto, logga in
+        </Link>
       </form>
-      <Typography onClick={() => handleAccount()}>
-        Har du redan ett konto, logga in
-      </Typography>
     </>
   );
 };

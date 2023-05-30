@@ -64,9 +64,9 @@ const LoginForm = ({ handleAccount }: Props) => {
           Logga in
         </Button>
         <Link
-          href="#"
           underline="hover"
           color="inherit"
+          style={{ cursor: 'pointer' }}
           onClick={() => handleAccount()}
         >
           Registrera dig
