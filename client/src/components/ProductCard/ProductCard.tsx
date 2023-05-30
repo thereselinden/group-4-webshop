@@ -32,7 +32,7 @@ const ProductCard = ({ product }: Props) => {
           title={product.title}
         />
         <Box sx={{ p: 2 }}>
-          <Typography variant="h6" component="div">
+          <Typography variant="h6" component="h3">
             {product.title}
           </Typography>
           <Box
