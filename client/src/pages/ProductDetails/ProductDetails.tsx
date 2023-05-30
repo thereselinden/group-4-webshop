@@ -86,10 +86,7 @@ const ProductDetails = () => {
                   variant="contained"
                   size="large"
                   fullWidth
-                  style={{
-                    backgroundColor: theme.palette.accent.background,
-                    color: theme.palette.accent.color,
-                  }}
+                  color="accent"
                   onClick={handleAddToCart}
                 >
                   Lägg i Shoppingbag

@@ -12,10 +12,7 @@ type Props = {
 const AddToCartBtn = ({ onClick }: Props) => {
   return (
     <IconButton
-      style={{
-        backgroundColor: theme.palette.accent.background,
-        color: theme.palette.accent.color,
-      }}
+      color="accent"
       aria-label="add to shopping cart"
       onClick={e => onClick(e)}
     >

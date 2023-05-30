@@ -19,15 +19,8 @@ const Cart = (props: Props) => {
         color="textColor"
         onClick={() => setDrawerOpen(true)}
       >
-        <Badge
-          badgeContent={numOfProducts()}
-          color="textColor1"
-          // sx={{
-          //   backgroundColor: theme.palette.accent.background,
-          //   color: theme.palette.accent.color,
-          // }}
-        >
-          <ShoppingCartIcon color="action" />
+        <Badge badgeContent={numOfProducts()} color="accent">
+          <ShoppingCartIcon />
         </Badge>
       </IconButton>
       <CartDrawer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />

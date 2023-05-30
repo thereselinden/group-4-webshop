@@ -128,10 +128,9 @@ const CartDrawer = ({ drawerOpen, setDrawerOpen }: Props) => {
           fullWidth
           variant="contained"
           style={{
-            backgroundColor: theme.palette.accent.background,
-            color: theme.palette.accent.color,
             marginBottom: '1rem',
           }}
+          color="accent"
         >
           Gå till kassan
         </Button>
