@@ -36,4 +36,11 @@ export const theme = createTheme({
     textColor: { main: '#565252', light: '#ccc' },
     accent: { background: '#E57C23', color: '#fff' },
   },
+  typography: {
+    fontFamily: 'Quicksand',
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 500,
+    fontWeightBold: 600,
+  },
 });
