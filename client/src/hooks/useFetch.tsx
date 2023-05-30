@@ -11,7 +11,6 @@ const useFetch = <T,>(url: string) => {
 
       try {
         const response = await fetch(url);
-        console.log(response);
         const data = await response.json();
         if (response.ok) {
           setData(data);
@@ -20,7 +19,6 @@ const useFetch = <T,>(url: string) => {
         }
         setIsLoading(false);
       } catch (error) {
-        console.log('error', error);
         // setErrorMessage(error.message);
         setErrorMessage((error as Error).message);
         setIsLoading(false);
