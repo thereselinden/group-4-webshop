@@ -64,13 +64,13 @@ const RegisterForm = ({ handleAccount }: Props) => {
         <FormInputField
           name="email"
           control={control}
-          label="Email"
+          label="E-postadress"
           minLength={4}
         />
         <FormInputField
           name="password"
           control={control}
-          label="Password"
+          label="Lösenord"
           minLength={3}
         />
 
