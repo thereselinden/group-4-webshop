@@ -6,6 +6,8 @@ import {
   useState,
 } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import {
   IUserContext,
   IUser,
@@ -35,6 +37,7 @@ export const useUserContext = () => useContext(UserContext);
 const UserProvider = ({ children }: PropsWithChildren) => {
   const [user, setUser] = useState<IUser>();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const alreadyLoggedIn = async (): Promise<void> => {
@@ -74,7 +77,7 @@ const UserProvider = ({ children }: PropsWithChildren) => {
       return { success: true, message: '' };
     } catch (error) {
       console.log((error as Error).message);
-      return { success: false, message: 'Login error' };
+      return { success: false, message: 'Användaruppgifter felaktiga' };
     }
   };
 
@@ -89,6 +92,7 @@ const UserProvider = ({ children }: PropsWithChildren) => {
       console.log('logging out');
       setUser(undefined);
       setIsLoggedIn(false);
+      navigate('/');
     } catch (error) {
       console.log((error as Error).message);
     }
