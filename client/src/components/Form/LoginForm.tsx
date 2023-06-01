@@ -5,9 +5,12 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import LockIcon from '@mui/icons-material/Lock';
+import { useState } from 'react';
+import { useUserContext } from '../../context/UserContext';
 
 type Props = {
   handleAccount: () => void;
+  handleClose: () => void;
 };
 
 const defaultValue = {
@@ -15,18 +18,21 @@ const defaultValue = {
   password: '',
 };
 
-const LoginForm = ({ handleAccount }: Props) => {
-  const { handleSubmit, control } = useForm<ILoginForm>({
+const LoginForm = ({ handleAccount, handleClose }: Props) => {
+  const { handleSubmit, control, reset } = useForm<ILoginForm>({
     defaultValues: defaultValue,
   });
+  const { login } = useUserContext();
+  const [loginError, setLoginError] = useState('');
+
   const onSubmit = async (data: ILoginForm) => {
-    const res = await fetch('api/users/login', {
-      method: 'POST',
-      headers: { 'content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    const data1 = await res.json();
-    console.log('Submit data', data1);
+    const result = await login(data);
+    if (result.success) handleClose();
+    else {
+      console.log(result.message);
+      setLoginError(result.message);
+      reset();
+    }
   };
 
   return (
@@ -40,6 +46,7 @@ const LoginForm = ({ handleAccount }: Props) => {
           margin: '0 auto',
           gap: 15,
         }}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <LockIcon color="accent" fontSize="large" />
         <Typography variant="h4">Logga in</Typography>
@@ -48,17 +55,21 @@ const LoginForm = ({ handleAccount }: Props) => {
           control={control}
           label="E-postadress"
           minLength={4}
+          type="email"
         />
         <FormInputField
           name="password"
           control={control}
           label="Lösenord"
           minLength={3}
+          type="password"
         />
-
+        {loginError && <Typography>{loginError}</Typography>}
         <Button
           variant="contained"
-          onClick={handleSubmit(onSubmit)}
+          // onClick={() => handleClose()}
+          //onClick={handleSubmit(onSubmit)}
+          type="submit"
           color="accent"
         >
           Logga in
