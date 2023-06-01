@@ -52,6 +52,7 @@ const RegisterForm = ({ handleAccount }: Props) => {
           control={control}
           label="Förnamn"
           minLength={4}
+          type="text"
         />
 
         <FormInputField
@@ -59,6 +60,7 @@ const RegisterForm = ({ handleAccount }: Props) => {
           control={control}
           label="Efternamn"
           minLength={4}
+          type="text"
         />
 
         <FormInputField
@@ -66,12 +68,14 @@ const RegisterForm = ({ handleAccount }: Props) => {
           control={control}
           label="E-postadress"
           minLength={4}
+          type="email"
         />
         <FormInputField
           name="password"
           control={control}
           label="Lösenord"
           minLength={3}
+          type="password"
         />
 
         <Button
