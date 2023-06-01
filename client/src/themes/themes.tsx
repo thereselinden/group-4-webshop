@@ -3,11 +3,11 @@ import { yellow, grey } from '@mui/material/colors';
 
 declare module '@mui/material/styles' {
   interface Palette {
-    textColor: { main: string; light: string };
-    accent: { background: string; color: string };
+    textColor: { main: string };
+    accent: { main: string };
   }
   interface PaletteOptions {
-    textColor: { main: string; light: string };
+    textColor: { main: string };
     accent: { main: string };
   }
 }

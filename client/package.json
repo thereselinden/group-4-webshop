@@ -13,10 +13,13 @@
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@hookform/resolvers": "^3.1.0",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.2",
+    "joi": "^17.9.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.44.2",
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.11.2"
   },
