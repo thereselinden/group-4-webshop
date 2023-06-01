@@ -5,6 +5,7 @@ import { Toolbar } from '@mui/material';
 import ProductDetails from '../../pages/ProductDetails/ProductDetails';
 import UserProfile from '../../pages/UserProfile/UserProfile';
 import ProtectedRoute from '../../utils/ProtectedRoute';
+import Checkout from '../../pages/Checkout/Checkout';
 
 type Props = {};
 
@@ -26,6 +27,7 @@ const MainContent = (props: Props) => {
             </ProtectedRoute>
           }
         />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </Box>
   );
