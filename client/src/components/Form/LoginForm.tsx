@@ -7,6 +7,8 @@ import Link from '@mui/material/Link';
 import LockIcon from '@mui/icons-material/Lock';
 import { useState } from 'react';
 import { useUserContext } from '../../context/UserContext';
+import { loginSchema } from './formValidate';
+import { joiResolver } from '@hookform/resolvers/joi';
 
 type Props = {
   handleAccount: () => void;
@@ -21,7 +23,9 @@ const defaultValue = {
 const LoginForm = ({ handleAccount, handleClose }: Props) => {
   const { handleSubmit, control, reset } = useForm<ILoginForm>({
     defaultValues: defaultValue,
+    resolver: joiResolver(loginSchema),
   });
+
   const { login } = useUserContext();
   const [loginError, setLoginError] = useState('');
 
@@ -32,6 +36,8 @@ const LoginForm = ({ handleAccount, handleClose }: Props) => {
       console.log(result.message);
       setLoginError(result.message);
       reset();
+      // Set timeout och ta bort felmeddelandet efter X sekunder tex
+      setTimeout(() => setLoginError(''), 2000);
     }
   };
 
@@ -54,24 +60,16 @@ const LoginForm = ({ handleAccount, handleClose }: Props) => {
           name="email"
           control={control}
           label="E-postadress"
-          minLength={4}
           type="email"
         />
         <FormInputField
           name="password"
           control={control}
           label="Lösenord"
-          minLength={3}
           type="password"
         />
         {loginError && <Typography>{loginError}</Typography>}
-        <Button
-          variant="contained"
-          // onClick={() => handleClose()}
-          //onClick={handleSubmit(onSubmit)}
-          type="submit"
-          color="accent"
-        >
+        <Button variant="contained" type="submit" color="accent">
           Logga in
         </Button>
         <Link
