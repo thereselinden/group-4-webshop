@@ -29,6 +29,7 @@ const UserModal = ({ open, handleClose }: Props) => {
   const handleAccount = () => {
     setHasAccount(!hasAccount);
   };
+
   return (
     <div>
       <Modal
@@ -39,7 +40,10 @@ const UserModal = ({ open, handleClose }: Props) => {
       >
         <Box sx={style}>
           {hasAccount ? (
-            <LoginForm handleAccount={handleAccount} />
+            <LoginForm
+              handleAccount={handleAccount}
+              handleClose={handleClose}
+            />
           ) : (
             <RegisterForm handleAccount={handleAccount} />
           )}
