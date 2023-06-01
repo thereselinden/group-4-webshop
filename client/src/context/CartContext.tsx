@@ -8,6 +8,8 @@ import {
 
 import { ICartContext, IProduct, ICartItem } from '../interfaces/interfaces';
 
+import { GetFromLs, SaveToLs } from '../utils/LocalStorage';
+
 export const CartContext = createContext<ICartContext>({
   cartItems: [],
   addToCart: () => {},
@@ -20,7 +22,12 @@ export const useCartContext = () => useContext(CartContext);
 
 // Provider
 const CartProvider = ({ children }: PropsWithChildren) => {
-  const [cartItems, setCartItems] = useState<ICartItem[]>([]);
+  const cartLs = GetFromLs<ICartItem[]>('cart');
+  const [cartItems, setCartItems] = useState<ICartItem[]>(cartLs || []);
+
+  useEffect(() => {
+    SaveToLs('cart', cartItems);
+  }, [cartItems]);
 
   //funktion som tar in en product i string
   const addToCart = (product: IProduct, quantity: number) => {
