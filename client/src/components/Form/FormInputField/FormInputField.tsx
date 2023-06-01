@@ -6,9 +6,10 @@ type Props = {
   control: any;
   label: string;
   minLength: number;
+  type: string;
 };
 
-const FormInputField = ({ name, control, label, minLength }: Props) => {
+const FormInputField = ({ name, control, label, minLength, type }: Props) => {
   return (
     <Controller
       name={name}
@@ -31,6 +32,7 @@ const FormInputField = ({ name, control, label, minLength }: Props) => {
           error={!!error}
           onChange={onChange}
           value={value}
+          type={type}
           fullWidth
           label={label}
           variant="outlined"
