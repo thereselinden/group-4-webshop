@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../context/UserContext';
 
@@ -10,9 +10,12 @@ const ProtectedRoute = ({ children }: Props) => {
   const { isLoggedIn } = useUserContext();
   const navigate = useNavigate();
 
-  if (!isLoggedIn) {
-    return navigate('/');
-  }
+  useEffect(() => {
+    if (!isLoggedIn) {
+      return navigate('/');
+    }
+  }, []);
+
   return children;
 };
 export default ProtectedRoute;
