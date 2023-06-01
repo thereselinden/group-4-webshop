@@ -5,29 +5,21 @@ type Props = {
   name: string;
   control: any;
   label: string;
-  minLength: number;
   type: string;
 };
 
-const FormInputField = ({ name, control, label, minLength, type }: Props) => {
+const FormInputField = ({ name, control, label, type }: Props) => {
   return (
     <Controller
       name={name}
       control={control}
-      rules={{
-        required: true,
-        minLength: {
-          value: minLength,
-          message: 'Du måste ha minst' + minLength + ' tecken',
-        },
-      }}
       render={({
         field: { onChange, value },
         fieldState: { error },
         formState,
       }) => (
         <TextField
-          helperText={error ? error.message : null}
+          helperText={error && error.message}
           size="small"
           error={!!error}
           onChange={onChange}
