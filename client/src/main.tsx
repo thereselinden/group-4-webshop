@@ -12,14 +12,14 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   //<React.StrictMode>
-  <UserProvider>
-    <CartProvider>
-      <BrowserRouter>
+  <BrowserRouter>
+    <UserProvider>
+      <CartProvider>
         <ThemeProvider theme={theme}>
           <App />
         </ThemeProvider>
-      </BrowserRouter>
-    </CartProvider>
-  </UserProvider>
+      </CartProvider>
+    </UserProvider>
+  </BrowserRouter>
   //</React.StrictMode>
 );
