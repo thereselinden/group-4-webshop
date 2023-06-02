@@ -11,19 +11,18 @@ type Props = {};
 
 const ProfileButton = (props: Props) => {
   const [open, setOpen] = useState(false);
-  console.log('modal state ', open);
+  console.log('modal open state', open);
 
-  const { isLoggedIn } = useUserContext();
+  const { user } = useUserContext();
 
   const handleOpen = () => setOpen(true);
-
   const handleClose = () => setOpen(false);
 
   return (
     <>
-      {!isLoggedIn ? (
+      {!user ? (
         <>
-          <IconButton aria-label="add to shopping cart" onClick={handleOpen}>
+          <IconButton aria-label="login" onClick={handleOpen}>
             <LoginIcon color="textColor" />
           </IconButton>
           <UserModal handleClose={handleClose} open={open} />
