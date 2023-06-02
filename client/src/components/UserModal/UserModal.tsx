@@ -24,10 +24,10 @@ type Props = {
 };
 
 const UserModal = ({ open, handleClose }: Props) => {
-  const [hasAccount, setHasAccount] = useState(true);
+  const [login, setLogin] = useState(true);
 
-  const handleAccount = () => {
-    setHasAccount(!hasAccount);
+  const toggleForm = () => {
+    setLogin(!login);
   };
 
   return (
@@ -39,13 +39,10 @@ const UserModal = ({ open, handleClose }: Props) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {hasAccount ? (
-            <LoginForm
-              handleAccount={handleAccount}
-              handleClose={handleClose}
-            />
+          {login ? (
+            <LoginForm toggleForm={toggleForm} handleClose={handleClose} />
           ) : (
-            <RegisterForm handleAccount={handleAccount} />
+            <RegisterForm toggleForm={toggleForm} />
           )}
         </Box>
       </Modal>
