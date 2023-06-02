@@ -51,9 +51,11 @@ export interface ILoginResponse {
   message: string;
 }
 export interface IUserContext {
-  user: IUser | undefined;
-  isLoggedIn: boolean;
-  login: (credentials: ILoginForm) => Promise<ILoginResponse>;
+  user: IUser | null;
+  isLoading: boolean;
+  errorMessage: string | null;
+  login: (credentials: ILoginForm) => Promise<void>;
+  register: (credentials: IRegisterForm) => Promise<void>;
   logout: () => void;
 }
 export interface IShipping {
