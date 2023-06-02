@@ -13,12 +13,13 @@ import { IShipping } from '../../interfaces/interfaces';
 type Props = {};
 
 const Shipping = (props: Props) => {
-  const {
-    data: shippingmethods,
-    isLoading,
-    errorMessage,
-  } = useFetch<IShipping[]>('/api/shippingmethod');
+  const [
+    [shippingmethods, setShippingmethods],
+    [isLoading, setIsLoading],
+    [errorMessage, setErrorMessage],
+  ] = useFetch<IShipping[]>('/api/shippingmethod');
   console.log(shippingmethods);
+
   return (
     <>
       <Paper variant="outlined">
