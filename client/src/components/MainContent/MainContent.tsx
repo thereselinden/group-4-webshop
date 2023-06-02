@@ -13,7 +13,14 @@ const MainContent = (props: Props) => {
   return (
     <Box
       component="main"
-      sx={{ px: { sm: 3 }, pt: 3, maxWidth: 1200, margin: 'auto' }}
+      sx={{
+        px: { sm: 3 },
+        py: 3,
+        maxWidth: 1200,
+        margin: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
     >
       <Toolbar />
       <Routes>
