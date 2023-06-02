@@ -19,11 +19,17 @@ const ProductDetails = () => {
   const { id } = useParams();
   const { addToCart } = useCartContext();
 
-  const {
-    data: product,
-    isLoading,
-    errorMessage,
-  } = useFetch<IProduct>(`/api/products/${id}`);
+  const [
+    [product, setProduct],
+    [isLoading, setIsLoading],
+    [errorMessage, setErrorMessage],
+  ] = useFetch<IProduct>(`/api/products/${id}`);
+
+  // const {
+  //   data: product,
+  //   isLoading,
+  //   errorMessage,
+  // } = useFetch<IProduct>(`/api/products/${id}`);
 
   const handleChange = (event: SelectChangeEvent) => {
     setQty(event.target.value as string);

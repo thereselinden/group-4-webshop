@@ -9,11 +9,16 @@ import { IProduct } from '../../interfaces/interfaces';
 //type Props = {};
 
 const ProductList = () => {
-  const {
-    data: products,
-    isLoading,
-    errorMessage,
-  } = useFetch<IProduct[]>('/api/products');
+  const [
+    [products, setProducts],
+    [isLoading, setIsLoading],
+    [errorMessage, setErrorMessage],
+  ] = useFetch<IProduct[]>('/api/products');
+  // const {
+  //   data: products,
+  //   isLoading,
+  //   errorMessage,
+  // } = useFetch<IProduct[]>('/api/products');
 
   return (
     <>
