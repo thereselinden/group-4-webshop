@@ -7,11 +7,11 @@ type Props = {
 };
 
 const ProtectedRoute = ({ children }: Props) => {
-  const { isLoggedIn } = useUserContext();
+  const { user } = useUserContext();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!user) {
       return navigate('/');
     }
   }, []);

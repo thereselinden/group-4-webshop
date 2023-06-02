@@ -5,9 +5,12 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
+import { joiResolver } from '@hookform/resolvers/joi';
+import { registerSchema } from './formValidate';
+import { useUserContext } from '../../context/UserContext';
 
 type Props = {
-  handleAccount: () => void;
+  toggleForm: () => void;
 };
 
 const defaultValue = {
@@ -17,19 +20,24 @@ const defaultValue = {
   password: '',
 };
 
-const RegisterForm = ({ handleAccount }: Props) => {
+const RegisterForm = ({ toggleForm }: Props) => {
   const { handleSubmit, control } = useForm<IRegisterForm>({
     defaultValues: defaultValue,
+    resolver: joiResolver(registerSchema),
   });
 
+  const { register, user, errorMessage, isLoading } = useUserContext();
+
   const onSubmit = async (data: IRegisterForm) => {
-    const res = await fetch('api/users/register', {
-      method: 'POST',
-      headers: { 'content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    const data1 = await res.json();
-    console.log('Submit register data', data1);
+    register(data);
+    toggleForm();
+    // const res = await fetch('api/users/register', {
+    //   method: 'POST',
+    //   headers: { 'content-Type': 'application/json' },
+    //   body: JSON.stringify(data),
+    // });
+    // const data1 = await res.json();
+    // console.log('Submit register data', data1);
   };
 
   return (
@@ -51,7 +59,6 @@ const RegisterForm = ({ handleAccount }: Props) => {
           name="firstName"
           control={control}
           label="Förnamn"
-          minLength={4}
           type="text"
         />
 
@@ -59,7 +66,6 @@ const RegisterForm = ({ handleAccount }: Props) => {
           name="lastName"
           control={control}
           label="Efternamn"
-          minLength={4}
           type="text"
         />
 
@@ -67,16 +73,15 @@ const RegisterForm = ({ handleAccount }: Props) => {
           name="email"
           control={control}
           label="E-postadress"
-          minLength={4}
           type="email"
         />
         <FormInputField
           name="password"
           control={control}
           label="Lösenord"
-          minLength={3}
           type="password"
         />
+        {errorMessage && <Typography>{errorMessage}</Typography>}
 
         <Button
           variant="contained"
@@ -89,7 +94,7 @@ const RegisterForm = ({ handleAccount }: Props) => {
           color="inherit"
           underline="hover"
           style={{ cursor: 'pointer' }}
-          onClick={() => handleAccount()}
+          onClick={() => toggleForm()}
         >
           Har du redan ett konto, logga in
         </Link>

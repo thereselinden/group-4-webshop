@@ -5,6 +5,7 @@ import { Toolbar } from '@mui/material';
 import ProductDetails from '../../pages/ProductDetails/ProductDetails';
 import UserProfile from '../../pages/UserProfile/UserProfile';
 import ProtectedRoute from '../../utils/ProtectedRoute';
+import Checkout from '../../pages/Checkout/Checkout';
 
 type Props = {};
 
@@ -12,7 +13,14 @@ const MainContent = (props: Props) => {
   return (
     <Box
       component="main"
-      sx={{ px: { sm: 3 }, pt: 3, maxWidth: 1200, margin: 'auto' }}
+      sx={{
+        px: { sm: 3 },
+        py: 3,
+        maxWidth: 1200,
+        margin: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
     >
       <Toolbar />
       <Routes>
@@ -26,6 +34,7 @@ const MainContent = (props: Props) => {
             </ProtectedRoute>
           }
         />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </Box>
   );

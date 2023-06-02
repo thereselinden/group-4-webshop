@@ -13,8 +13,10 @@ import {
   IUser,
   ILoginForm,
   ILoginResponse,
+  IRegisterForm,
 } from '../interfaces/interfaces';
 import useFetch from '../hooks/useFetch';
+import fetchData from '../utils/FetchData';
 
 /* export const UserContext = createContext<IUserContext>({
   user: {
@@ -35,65 +37,70 @@ export const useUserContext = () => useContext(UserContext);
 
 // Provider
 const UserProvider = ({ children }: PropsWithChildren) => {
-  const [user, setUser] = useState<IUser>();
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [user, setUser] = useState<IUser | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const alreadyLoggedIn = async (): Promise<void> => {
-      const res = await fetch('api/users/authorize');
-      if (res.status === 200) {
-        const data = await res.json();
-        setUser(data);
-        setIsLoggedIn(true);
+      try {
+        const isAuth = await fetchData<IUser>('api/users/authorize');
+        setUser(isAuth);
+      } catch (error) {
+        console.log('error alreadyloggedin');
       }
     };
     alreadyLoggedIn();
   }, []);
 
-  /*   const {
-    data: auth,
-    isLoading,
-    errorMessage,
-  } = useFetch<IUser | undefined>('api/users/authorize');
-
-  useEffect(() => {
-    if (auth) setUser(auth);
-  }, []); */
-
   //funktion som tar in en product i string
-  const login = async (credentials: ILoginForm): Promise<ILoginResponse> => {
+  const login = async (credentials: ILoginForm): Promise<void> => {
+    setIsLoading(true);
     try {
-      const res = await fetch('api/users/login', {
-        method: 'POST',
-        headers: { 'content-Type': 'application/json' },
-        body: JSON.stringify(credentials),
-      });
-      if (res.status !== 200) throw new Error('res error login');
-      const user = await res.json();
-      console.log('Submit data', user);
+      const user = await fetchData<IUser>(
+        'api/users/login',
+        'POST',
+        JSON.stringify(credentials)
+      );
       setUser(user);
-      setIsLoggedIn(true);
-      return { success: true, message: '' };
+      setIsLoading(false);
+      setErrorMessage(null);
     } catch (error) {
-      console.log((error as Error).message);
-      return { success: false, message: 'Användaruppgifter felaktiga' };
+      setErrorMessage('Felaktiga användaruppgifter');
+      setIsLoading(false);
+    }
+  };
+
+  const register = async (credentials: IRegisterForm): Promise<void> => {
+    setIsLoading(true);
+    try {
+      const user = await fetchData<IUser>(
+        'api/users/register',
+        'POST',
+        JSON.stringify(credentials)
+      );
+      // setUser(user);
+      console.log(user);
+      setIsLoading(false);
+      setErrorMessage(null);
+    } catch (error) {
+      setErrorMessage('Epostaddress redan registrerad');
+      setIsLoading(false);
     }
   };
 
   const logout = async (): Promise<void> => {
     try {
-      await fetch('api/users/logout', {
-        method: 'POST',
-        headers: { 'content-Type': 'application/json' },
-      });
+      await fetchData<IUser>('api/users/logout', 'POST');
       //if (!res.ok !== 200) throw new Error('res error login');
 
       console.log('logging out');
-      setUser(undefined);
-      setIsLoggedIn(false);
+      setUser(null);
       navigate('/');
     } catch (error) {
+      console.log(error as Error);
       console.log((error as Error).message);
     }
   };
@@ -102,7 +109,9 @@ const UserProvider = ({ children }: PropsWithChildren) => {
   //emmellan Contexten lägger vi (props.)children
   //Proivdea med value ut det vi vill göra synligt. Value måste matcha Interface. Eftersom vi typat upp context så. Därför value propen. {{}} pga gör det som ett objekt
   return (
-    <UserContext.Provider value={{ user, isLoggedIn, login, logout }}>
+    <UserContext.Provider
+      value={{ isLoading, errorMessage, user, login, register, logout }}
+    >
       {children}
     </UserContext.Provider>
   );

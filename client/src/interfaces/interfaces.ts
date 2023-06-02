@@ -51,8 +51,33 @@ export interface ILoginResponse {
   message: string;
 }
 export interface IUserContext {
-  user: IUser | undefined;
-  isLoggedIn: boolean;
-  login: (credentials: ILoginForm) => Promise<ILoginResponse>;
+  user: IUser | null;
+  isLoading: boolean;
+  errorMessage: string | null;
+  login: (credentials: ILoginForm) => Promise<void>;
+  register: (credentials: IRegisterForm) => Promise<void>;
   logout: () => void;
 }
+export interface IShipping {
+  company: string;
+  price: number;
+  deliveryTimeInHours: number;
+}
+
+// export interface IOrder {
+//   orderNumber: number,
+//   customer: IUser,
+//   deliveryAddress: {
+//     street: string,
+//     zip: number,
+//     city: string,
+//     country: string,
+//   }
+//   orderItems: {
+//     item: ICartItem,
+//     price: number
+//   }
+// }
+// export interface IOrderContext {
+//   orders: IOrder[]
+// }
