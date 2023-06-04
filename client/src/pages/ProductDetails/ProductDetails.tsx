@@ -13,6 +13,7 @@ import { IProduct } from '../../interfaces/interfaces';
 import useFetch from '../../hooks/useFetch';
 import { theme } from '../../themes/themes';
 import { useCartContext } from '../../context/CartContext';
+import { inventories } from '../../utils/inventories';
 
 const ProductDetails = () => {
   const [qty, setQty] = useState('1');
@@ -88,6 +89,7 @@ const ProductDetails = () => {
                     </Select>
                   </FormControl>
                 </Box>
+                {inventories(product.inStock)}
                 <Button
                   variant="contained"
                   size="large"
