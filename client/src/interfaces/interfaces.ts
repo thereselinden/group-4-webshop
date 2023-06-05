@@ -22,7 +22,7 @@ export interface ICartContext {
   cartItems: ICartItem[];
   addToCart: (product: IProduct, quantity: number) => void;
   removeFromCart: (id: string, qty?: number) => void;
-  calcTotal: () => number;
+  calcProductTotal: () => number;
   numOfProducts: () => number;
 }
 
@@ -54,6 +54,11 @@ export interface IUserContext {
   user: IUser | null;
   isLoading: boolean;
   errorMessage: string | null;
+  userModal: boolean;
+  registerSuccess: boolean;
+  setUserModal: (arg0: boolean) => void;
+  setRegisterSuccess: (arg0: boolean) => void;
+  setErrorMessage: (arg0: null) => void;
   login: (credentials: ILoginForm) => Promise<void>;
   register: (credentials: IRegisterForm) => Promise<void>;
   logout: () => void;
