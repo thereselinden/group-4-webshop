@@ -1,4 +1,4 @@
-import Joi from 'joi';
+import Joi from "joi";
 
 export const loginSchema = Joi.object({
   email: Joi.string()
@@ -14,4 +14,16 @@ export const registerSchema = Joi.object({
     .email({ tlds: { allow: false } })
     .required(),
   password: Joi.string().min(4).required(),
+});
+
+export const customerSchema = Joi.object({
+  firstName: Joi.string().min(2).required(),
+  lastName: Joi.string().min(4).required(),
+  email: Joi.string()
+    .email({ tlds: { allow: false } })
+    .required(),
+  address: Joi.string().strict().required(),
+  zip: Joi.string().strict().required(),
+  city: Joi.string().strict().required(),
+  country: Joi.string().strict().required(),
 });
