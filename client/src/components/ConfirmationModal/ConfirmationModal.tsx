@@ -45,8 +45,6 @@ const ConfirmationModal = ({
     `/api/orders/${order}`
   );
 
-  console.log('in modal order details', confirmedOrder);
-
   let orderProductTotal = 0;
 
   if (confirmedOrder)
