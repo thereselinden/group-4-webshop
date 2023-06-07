@@ -6,9 +6,10 @@ type Props = {
   control: any;
   label: string;
   type: string;
+  disabled?: boolean;
 };
 
-const FormInputField = ({ name, control, label, type }: Props) => {
+const FormInputField = ({ name, control, label, type, disabled }: Props) => {
   return (
     <Controller
       name={name}
@@ -27,6 +28,7 @@ const FormInputField = ({ name, control, label, type }: Props) => {
           type={type}
           fullWidth
           label={label}
+          disabled={disabled}
           variant="outlined"
           color="textColor"
         />
