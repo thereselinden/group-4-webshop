@@ -12,7 +12,11 @@ import { styled } from '@mui/material';
 import CartItemList from '../../components/CartItemList/CartItemList';
 import Shipping from '../../components/Shipping/Shipping';
 import useFetch from '../../hooks/useFetch';
-import { IShipping, IDeliveryAddress } from '../../interfaces/interfaces';
+import {
+  IShipping,
+  IDeliveryAddress,
+  IConfirmedOrder,
+} from '../../interfaces/interfaces';
 import { useUserContext } from '../../context/UserContext';
 import { useCartContext } from '../../context/CartContext';
 import { calcOrderTotal } from '../../utils/helper';
@@ -25,8 +29,15 @@ import BackDropLoader from '../../components/BackDropLoader/BackDropLoader';
 type Props = {};
 
 const CheckoutContainer = styled(Box)({
-  display: 'grid',
-  gridTemplateColumns: '3fr auto',
+  display: 'flex',
+  flexDirection: 'column-reverse',
+  padding: '1rem',
+  '@media (min-width: 780px)': {
+    display: 'grid',
+    gridTemplateColumns: '60% 40%',
+    gap: '16px',
+    padding: 0,
+  },
 });
 
 const Checkout = (props: Props) => {
@@ -43,9 +54,11 @@ const Checkout = (props: Props) => {
   const [selectedShipping, setSelectedShipping] = useState('');
   const [shippingPrice, setShippingPrice] = useState(0);
   const [shippingId, setShippingId] = useState('');
-  const [order, setOrder] = useState({});
+  const [order, setOrder] = useState<IConfirmedOrder | null>(null);
   const [loading, setLoading] = useState(false);
   const [confirmationModal, setConfirmationModal] = useState(false);
+
+  console.log('order state checkout ', order);
 
   const { calcProductTotal, numOfProducts, cartItems, clearCart } =
     useCartContext();
@@ -92,7 +105,7 @@ const Checkout = (props: Props) => {
     };
 
     try {
-      const order = await fetchData(
+      const order = await fetchData<IConfirmedOrder>(
         '/api/orders',
         'POST',
         JSON.stringify(orderData)
@@ -154,7 +167,10 @@ const Checkout = (props: Props) => {
               )}
             </Paper>
           </Box>
-          <Box>
+          <Paper
+            variant="outlined"
+            sx={{ p: 2, height: 'fit-content', mb: { xs: 4 } }}
+          >
             <CartItemList />
             <List>
               <ListItem
@@ -178,14 +194,16 @@ const Checkout = (props: Props) => {
                 </Typography>
               </ListItem>
             </List>
-          </Box>
+          </Paper>
         </CheckoutContainer>
       )}
-      <ConfirmationModal
-        confirmationModal={confirmationModal}
-        handleConfirmationCloseModal={handleConfirmationCloseModal}
-        order={order._id}
-      />
+      {order && (
+        <ConfirmationModal
+          confirmationModal={confirmationModal}
+          handleConfirmationCloseModal={handleConfirmationCloseModal}
+          order={order._id}
+        />
+      )}
     </>
   );
 };
