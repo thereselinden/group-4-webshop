@@ -1,17 +1,16 @@
-import { styled } from "@mui/system";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
+import { styled } from '@mui/system';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 
-import useFetch from "../../hooks/useFetch";
-import { IShipping } from "../../interfaces/interfaces";
-import { deliveryDate } from "../../utils/helper";
-import { useState, ChangeEvent } from "react";
+import { IShipping } from '../../interfaces/interfaces';
+import { deliveryDate } from '../../utils/helper';
+import { ChangeEvent } from 'react';
 
 type Props = {
   shippingMethods: IShipping[];
@@ -20,10 +19,10 @@ type Props = {
 };
 
 const CheckoutOption = styled(Box)({
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  borderBottom: "1px solid black",
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  borderBottom: '1px solid black',
 });
 
 const Shipping = ({
@@ -32,11 +31,11 @@ const Shipping = ({
   handleChange,
 }: Props) => {
   return (
-    <Paper variant="outlined" sx={{ mb: 4 }}>
-      <Typography variant="h4" component="h2">
+    <Paper variant="outlined" sx={{ mb: 4, p: 2 }}>
+      <Typography variant="h4" component="h2" sx={{ mb: 2 }}>
         Leveransmetod
       </Typography>
-      <FormControl sx={{ width: "100%", p: 3 }}>
+      <FormControl sx={{ width: '100%' }}>
         <FormLabel id="demo-radio-buttons-group-label" color="textColor">
           Leveransval
         </FormLabel>
@@ -44,11 +43,11 @@ const Shipping = ({
           aria-labelledby="demo-radio-buttons-group-label"
           name="radio-buttons-group"
           value={selectedShipping}
-          onChange={(e) => handleChange(e)}
+          onChange={e => handleChange(e)}
         >
-          {shippingMethods?.map((method) => (
+          {shippingMethods?.map(method => (
             <CheckoutOption key={method.company}>
-              <Box sx={{ display: "flex", flexDirection: "column" }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                 <FormControlLabel
                   value={method.company}
                   control={<Radio color="accent" />}
