@@ -27,7 +27,7 @@ const MainContent = (props: Props) => {
         <Route path="/" element={<ProductList />} />
         <Route path="/:id" element={<ProductDetails />} />
         <Route
-          path="/profile"
+          path="/profile/*"
           element={
             <ProtectedRoute>
               <UserProfile />
