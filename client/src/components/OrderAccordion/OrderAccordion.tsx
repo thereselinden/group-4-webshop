@@ -1,5 +1,5 @@
-import React from 'react';
-import { IConfirmedOrder } from '../../interfaces/interfaces';
+import React from "react";
+import { IConfirmedOrder } from "../../interfaces/interfaces";
 
 import {
   calcOrderItemTotal,
@@ -7,14 +7,17 @@ import {
   calcOrderTotalProducts,
   formatOrderDate,
   formatOrderDay,
-} from '../../utils/helper';
+} from "../../utils/helper";
 
-import Box from '@mui/material/Box';
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Box from "@mui/material/Box";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import { Button, Chip, Stack } from "@mui/material";
 
 type Props = {
   order: IConfirmedOrder;
@@ -27,6 +30,7 @@ type Props = {
     | ((event: React.SyntheticEvent<Element, Event>, expanded: boolean) => void)
     | undefined;
   expanded: string | false;
+  isAdmin?: boolean;
 };
 
 const OrderAccordion = ({
@@ -35,7 +39,10 @@ const OrderAccordion = ({
   loadingOrder,
   handleChange,
   expanded,
+  isAdmin = false,
 }: Props) => {
+  console.log(isAdmin);
+
   return (
     <Accordion
       expanded={expanded === `panel${order._id}`}
@@ -48,24 +55,25 @@ const OrderAccordion = ({
         aria-controls="panel1bh-content"
         id="panel1bh-header"
       >
-        <Box sx={{ width: '25%' }}>
+        <Box sx={{ width: "25%" }}>
           <Typography>{formatOrderDay(order.createdAt)}</Typography>
-          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-            {calcOrderTotalProducts(order.orderItems)}{' '}
+          <Typography variant="caption" sx={{ color: "text.secondary" }}>
+            {calcOrderTotalProducts(order.orderItems)}{" "}
             {calcOrderTotalProducts(order.orderItems) > 1
-              ? 'produkter'
-              : 'produkt'}
+              ? "produkter"
+              : "produkt"}
           </Typography>
         </Box>
 
         <Typography
           sx={{
-            width: '100%',
-            alignItems: 'center',
-            display: 'flex',
-            justifyContent: 'flex-end',
+            width: "100%",
+            alignItems: "center",
+            display: "flex",
+            justifyContent: "flex-end",
             pr: 2,
-            color: 'text.secondary',
+            color: "text.secondary",
+            gap: 1,
           }}
         >
           {/* TODO! DETTA TAR EJ HÄNSYN TILL FRAKTKOSTNADEN */}
@@ -73,17 +81,47 @@ const OrderAccordion = ({
           {/* {order.orderItems.map(item =>
           calcOrderItemTotal(item.quantity, item.price)
         )} SEK*/}
+          {order.shipped ? (
+            <CheckCircleIcon color="success" />
+          ) : (
+            <CheckCircleOutlineIcon color="disabled" />
+          )}
         </Typography>
       </AccordionSummary>
       {loadingOrder
-        ? 'Laddar single order....'
+        ? "Laddar single order...."
         : singleOrder && (
-            <AccordionDetails>
-              {singleOrder.orderItems.map(item => (
-                <Typography key={item.product._id}>
-                  {item.product.title}
-                </Typography>
-              ))}
+            <AccordionDetails
+              sx={{ display: "flex", justifyContent: "space-between" }}
+            >
+              <Box>
+                {singleOrder.orderItems.map((item) => (
+                  <Typography key={item.product._id}>
+                    {item.product.title}
+                  </Typography>
+                ))}
+              </Box>
+              <Box>
+                {isAdmin && (
+                  <>
+                    <Stack direction="row" spacing={1}>
+                      {!order.shipped ? (
+                        <Chip
+                          label="Markera som skickad"
+                          color="success"
+                          /* onClick={handleClick}*/
+                        />
+                      ) : (
+                        <Chip
+                          label="Ångra skickad"
+                          color="warning"
+                          /* onClick={handleClick}*/
+                        />
+                      )}
+                    </Stack>
+                  </>
+                )}
+              </Box>
             </AccordionDetails>
           )}
     </Accordion>
