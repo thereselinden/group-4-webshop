@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useUserContext } from '../../context/UserContext';
+import { Route, Routes, Link, NavLink } from 'react-router-dom';
+
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -10,32 +10,29 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import Typography from '@mui/material/Typography';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import { IConfirmedOrder } from '../../interfaces/interfaces';
-import { Route, Routes, Link } from 'react-router-dom';
-import OverView from './OverView';
+
+import { useUserContext } from '../../context/UserContext';
+import Overview from './OverView';
 import MyOrders from './MyOrders';
-// import { ListItemIcon } from '@mui/material';
 
 type Props = {};
 
-const navItems = ['Mina köp', 'Logga ut'];
-
-// ordrar produkter
-
-//const handleLogout =()=>{logout()};
 const UserProfile = (props: Props) => {
   const { user, logout } = useUserContext();
-  const [orders, setOrders] = useState<IConfirmedOrder[]>(null);
 
   return (
     <>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Paper variant="outlined">
+      <Box sx={{ display: 'grid', gridTemplateColumns: '250px auto', gap: 2 }}>
+        <Paper variant="outlined" sx={{ height: 'fit-content' }}>
           <List>
-            <Typography variant="h5" component="p">
+            <Typography
+              variant="h5"
+              component="h1"
+              sx={{ textAlign: 'center', mb: 2 }}
+            >
               Mina sidor
             </Typography>
-            <Link to="profile/my-orders">
+            <NavLink to="profile/my-orders">
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon>
@@ -44,7 +41,7 @@ const UserProfile = (props: Props) => {
                   <ListItemText primary={'Mina köp'} />
                 </ListItemButton>
               </ListItem>
-            </Link>
+            </NavLink>
             {user?.isAdmin && (
               <>
                 <ListItem disablePadding>
@@ -77,12 +74,12 @@ const UserProfile = (props: Props) => {
           </List>
         </Paper>
 
-        <Box component="div" sx={{ flexGrow: 1, p: 3 }}>
+        <Box component="div" sx={{ flexGrow: 1 }}>
           <Routes>
-            <Route path="/profile/overview" element={<OverView />} />
-            <Route path="/profile/my-orders" element={<MyOrders />} />
-            <Route path="/profile/admin-orders" element={<OverView />} />
-            <Route path="/profile/admin-products" element={<OverView />} />
+            <Route path="/overview" element={<Overview />} />
+            <Route path="profile/my-orders" element={<MyOrders />} />
+            <Route path="/profile/admin-orders" element={<Overview />} />
+            <Route path="/profile/admin-products" element={<Overview />} />
           </Routes>
           {/* <Typography variant="h4" component="h1">
             Hej {user?.firstName}
