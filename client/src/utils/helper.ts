@@ -14,6 +14,10 @@ export const formatOrderDate = (date: string) => {
   return dayjs(date).locale('sv').format('D MMMM HH:mm');
 };
 
+export const formatOrderDay = (date: string) => {
+  return dayjs(date).locale('sv').format('DD MMM YYYY');
+};
+
 export const calcOrderTotal = (
   productPrice: () => number,
   shippingPrice: number
@@ -23,6 +27,14 @@ export const calcOrderTotal = (
 
 export const calcOrderItemTotal = (qty: number, price: number): number => {
   return qty * price;
+};
+
+export const calcOrderTotalProducts = (orderItems: IOrderItem[]): number => {
+  const initialValue = 0;
+  return orderItems.reduce(
+    (accumulator, item) => accumulator + item.quantity,
+    initialValue
+  );
 };
 
 export const calcOrderProductTotal = (orderItems: IOrderItem[]): number => {
