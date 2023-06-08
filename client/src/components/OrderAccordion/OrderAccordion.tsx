@@ -1,24 +1,22 @@
-import React from "react";
-import { IConfirmedOrder } from "../../interfaces/interfaces";
+import React from 'react';
 
+import Box from '@mui/material/Box';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import { Chip, Stack } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
+
+import { IConfirmedOrder } from '../../interfaces/interfaces';
 import {
-  calcOrderItemTotal,
   calcOrderProductTotal,
   calcOrderTotalProducts,
-  formatOrderDate,
   formatOrderDay,
-} from "../../utils/helper";
-
-import Box from "@mui/material/Box";
-import Accordion from "@mui/material/Accordion";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import { Chip, Stack } from "@mui/material";
-import CircularProgress from "@mui/material/CircularProgress";
+} from '../../utils/helper';
 
 type Props = {
   order: IConfirmedOrder;
@@ -56,24 +54,24 @@ const OrderAccordion = ({
         aria-controls="panel1bh-content"
         id="panel1bh-header"
       >
-        <Box sx={{ width: "25%" }}>
+        <Box sx={{ width: '25%' }}>
           <Typography>{formatOrderDay(order.createdAt)}</Typography>
-          <Typography variant="caption" sx={{ color: "text.secondary" }}>
-            {calcOrderTotalProducts(order.orderItems)}{" "}
+          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+            {calcOrderTotalProducts(order.orderItems)}{' '}
             {calcOrderTotalProducts(order.orderItems) > 1
-              ? "produkter"
-              : "produkt"}
+              ? 'produkter'
+              : 'produkt'}
           </Typography>
         </Box>
 
         <Typography
           sx={{
-            width: "100%",
-            alignItems: "center",
-            display: "flex",
-            justifyContent: "flex-end",
+            width: '100%',
+            alignItems: 'center',
+            display: 'flex',
+            justifyContent: 'flex-end',
             pr: 2,
-            color: "text.secondary",
+            color: 'text.secondary',
             gap: 1,
           }}
         >
@@ -92,8 +90,8 @@ const OrderAccordion = ({
 
       <AccordionDetails
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
+          display: 'flex',
+          justifyContent: 'space-between',
         }}
       >
         <Box>
@@ -101,7 +99,7 @@ const OrderAccordion = ({
             <CircularProgress color="accent" />
           ) : (
             singleOrder &&
-            singleOrder.orderItems.map((item) => (
+            singleOrder.orderItems.map(item => (
               <Typography key={item.product._id}>
                 {item.product.title}
               </Typography>

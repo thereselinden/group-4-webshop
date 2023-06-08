@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import { useParams } from 'react-router';
+
 import Grid from '@mui/system/Unstable_Grid/Grid';
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
-import { useState } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -11,26 +12,17 @@ import Button from '@mui/material/Button';
 
 import { IProduct } from '../../interfaces/interfaces';
 import useFetch from '../../hooks/useFetch';
-import { theme } from '../../themes/themes';
 import { useCartContext } from '../../context/CartContext';
-import { inventories } from '../../utils/inventories';
+import { inventories } from '../../utils/Inventories';
 
 const ProductDetails = () => {
   const [qty, setQty] = useState('1');
   const { id } = useParams();
   const { addToCart } = useCartContext();
 
-  const [
-    [product, setProduct],
-    [isLoading, setIsLoading],
-    [errorMessage, setErrorMessage],
-  ] = useFetch<IProduct>(`/api/products/${id}`);
-
-  // const {
-  //   data: product,
-  //   isLoading,
-  //   errorMessage,
-  // } = useFetch<IProduct>(`/api/products/${id}`);
+  const [[product], [isLoading], [errorMessage]] = useFetch<IProduct>(
+    `/api/products/${id}`
+  );
 
   const handleChange = (event: SelectChangeEvent) => {
     setQty(event.target.value as string);

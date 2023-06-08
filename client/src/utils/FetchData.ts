@@ -3,7 +3,6 @@ const fetchData = async <T>(
   method = 'GET',
   body?: any
 ): Promise<T | null> => {
-  console.log('fetch data body', body);
   try {
     const response = await fetch(url, {
       method: method,

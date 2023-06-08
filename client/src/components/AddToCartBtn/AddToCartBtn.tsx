@@ -3,8 +3,6 @@ import { MouseEvent } from 'react';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import IconButton from '@mui/material/IconButton';
 
-import { theme } from '../../themes/themes';
-
 type Props = {
   onClick: (e: MouseEvent<HTMLButtonElement>) => void;
 };

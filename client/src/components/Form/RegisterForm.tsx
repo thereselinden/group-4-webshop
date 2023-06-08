@@ -1,25 +1,27 @@
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { IRegisterForm } from "../../interfaces/interfaces";
-import FormInputField from "./FormInputField/FormInputField";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
-import HowToRegIcon from "@mui/icons-material/HowToReg";
-import CircularProgress from "@mui/material/CircularProgress";
-import { joiResolver } from "@hookform/resolvers/joi";
-import { registerSchema } from "./formValidate";
-import { useUserContext } from "../../context/UserContext";
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { joiResolver } from '@hookform/resolvers/joi';
+
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+import CircularProgress from '@mui/material/CircularProgress';
+
+import { IRegisterForm } from '../../interfaces/interfaces';
+import FormInputField from './FormInputField/FormInputField';
+import { registerSchema } from './formValidate';
+import { useUserContext } from '../../context/UserContext';
 
 type Props = {
   toggleForm: () => void;
 };
 
 const defaultValue = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
 };
 
 const RegisterForm = ({ toggleForm }: Props) => {
@@ -43,11 +45,11 @@ const RegisterForm = ({ toggleForm }: Props) => {
     <>
       <form
         style={{
-          width: "60%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          margin: "0 auto",
+          width: '60%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          margin: '0 auto',
           gap: 15,
         }}
       >
@@ -87,12 +89,12 @@ const RegisterForm = ({ toggleForm }: Props) => {
           onClick={handleSubmit(onSubmit)}
           color="accent"
         >
-          {isLoading ? <CircularProgress /> : "Registrera konto"}
+          {isLoading ? <CircularProgress /> : 'Registrera konto'}
         </Button>
         <Link
           color="inherit"
           underline="hover"
-          style={{ cursor: "pointer" }}
+          style={{ cursor: 'pointer' }}
           onClick={() => toggleForm()}
         >
           Har du redan ett konto, logga in

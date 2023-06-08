@@ -1,17 +1,14 @@
+import { MouseEvent } from 'react';
+import { Link } from 'react-router-dom';
+
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Box } from '@mui/system';
 
 import { IProduct } from '../../interfaces/interfaces';
 import AddToCartBtn from '../AddToCartBtn/AddToCartBtn';
-import { Box } from '@mui/system';
-import { CardActionArea } from '@mui/material';
-import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/CartContext';
-import { MouseEvent } from 'react';
 
 type Props = { product: IProduct };
 

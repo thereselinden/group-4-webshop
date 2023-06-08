@@ -5,37 +5,20 @@ import {
   useEffect,
   useState,
 } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 
 import {
   IUserContext,
   IUser,
   ILoginForm,
-  ILoginResponse,
   IRegisterForm,
 } from '../interfaces/interfaces';
-import useFetch from '../hooks/useFetch';
 import fetchData from '../utils/FetchData';
-
-/* export const UserContext = createContext<IUserContext>({
-  user: {
-    id: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    isAdmin: false,
-  },
-  isLoggedIn: false,
-  login: ():Promise<ILoginResponse>  => {},
-  logout: () => {},
-}); */
 
 export const UserContext = createContext<IUserContext>(null as any);
 
 export const useUserContext = () => useContext(UserContext);
 
-// Provider
 const UserProvider = ({ children }: PropsWithChildren) => {
   const [user, setUser] = useState<IUser | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -57,7 +40,6 @@ const UserProvider = ({ children }: PropsWithChildren) => {
     alreadyLoggedIn();
   }, []);
 
-  //funktion som tar in en product i string
   const login = async (credentials: ILoginForm): Promise<void> => {
     setIsLoading(true);
     try {
@@ -96,9 +78,6 @@ const UserProvider = ({ children }: PropsWithChildren) => {
   const logout = async (): Promise<void> => {
     try {
       await fetchData<IUser>('/api/users/logout', 'POST');
-      //if (!res.ok !== 200) throw new Error('res error login');
-
-      console.log('logging out');
       setUser(null);
       navigate('/');
     } catch (error) {
@@ -107,9 +86,6 @@ const UserProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
-  //Expoerterar ut contextens provider
-  //emmellan Contexten lägger vi (props.)children
-  //Proivdea med value ut det vi vill göra synligt. Value måste matcha Interface. Eftersom vi typat upp context så. Därför value propen. {{}} pga gör det som ett objekt
   return (
     <UserContext.Provider
       value={{
@@ -130,7 +106,5 @@ const UserProvider = ({ children }: PropsWithChildren) => {
     </UserContext.Provider>
   );
 };
-
-//Children i mitten - > se App.tsx
 
 export default UserProvider;

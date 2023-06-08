@@ -5,9 +5,7 @@ import Terms from '../Terms/Terms';
 import Contact from '../Contact/Contact';
 import Social from '../Social/Social';
 
-type Props = {};
-
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
     <>
       <Grid
@@ -33,7 +31,7 @@ const Footer = (props: Props) => {
             mt: 2,
           }}
         >
-          Copyright 2023 Grupp X Medieinstitutet
+          Copyright 2023 Grupp 4 Medieinstitutet
         </Box>
       </Grid>
     </>

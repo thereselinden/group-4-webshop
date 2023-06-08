@@ -1,4 +1,4 @@
-import { Route, Routes, Link, NavLink } from 'react-router-dom';
+import { Route, Routes, NavLink } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -17,9 +17,7 @@ import MyOrders from './MyOrders';
 import AllOrders from './AllOrders';
 import AllProducts from './AllProducts';
 
-type Props = {};
-
-const UserProfile = (props: Props) => {
+const UserProfile = () => {
   const { user, logout } = useUserContext();
 
   return (
@@ -91,9 +89,6 @@ const UserProfile = (props: Props) => {
             <Route path="admin-orders" element={<AllOrders />} />
             <Route path="admin-products" element={<AllProducts />} />
           </Routes>
-          {/* <Typography variant="h4" component="h1">
-            Hej {user?.firstName}
-          </Typography> */}
         </Box>
       </Box>
     </>

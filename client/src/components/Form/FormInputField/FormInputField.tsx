@@ -1,4 +1,5 @@
 import { Controller } from 'react-hook-form';
+
 import TextField from '@mui/material/TextField';
 
 type Props = {
@@ -14,11 +15,7 @@ const FormInputField = ({ name, control, label, type, disabled }: Props) => {
     <Controller
       name={name}
       control={control}
-      render={({
-        field: { onChange, value },
-        fieldState: { error },
-        formState,
-      }) => (
+      render={({ field: { onChange, value }, fieldState: { error } }) => (
         <TextField
           helperText={error && error.message}
           size="small"

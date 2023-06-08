@@ -1,24 +1,12 @@
-import { useEffect } from 'react';
-
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 
 import useFetch from '../../hooks/useFetch';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { IProduct } from '../../interfaces/interfaces';
-//type Props = {};
 
 const ProductList = () => {
-  const [
-    [products, setProducts],
-    [isLoading, setIsLoading],
-    [errorMessage, setErrorMessage],
-  ] = useFetch<IProduct[]>('/api/products');
-  // const {
-  //   data: products,
-  //   isLoading,
-  //   errorMessage,
-  // } = useFetch<IProduct[]>('/api/products');
+  const [[products], [isLoading], [errorMessage]] =
+    useFetch<IProduct[]>('/api/products');
 
   return (
     <>

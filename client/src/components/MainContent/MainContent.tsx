@@ -1,15 +1,15 @@
 import { Route, Routes } from 'react-router';
-import ProductList from '../../pages/ProductList/ProductList';
+
 import { Box } from '@mui/system';
 import { Toolbar } from '@mui/material';
+
+import ProductList from '../../pages/ProductList/ProductList';
 import ProductDetails from '../../pages/ProductDetails/ProductDetails';
 import UserProfile from '../../pages/UserProfile/UserProfile';
 import ProtectedRoute from '../../utils/ProtectedRoute';
 import Checkout from '../../pages/Checkout/Checkout';
 
-type Props = {};
-
-const MainContent = (props: Props) => {
+const MainContent = () => {
   return (
     <Box
       component="main"

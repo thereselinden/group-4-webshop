@@ -1,3 +1,5 @@
+import { ChangeEvent } from 'react';
+
 import { styled } from '@mui/system';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -10,7 +12,6 @@ import Typography from '@mui/material/Typography';
 
 import { IShipping } from '../../interfaces/interfaces';
 import { deliveryDate } from '../../utils/helper';
-import { ChangeEvent } from 'react';
 
 type Props = {
   shippingMethods: IShipping[];
