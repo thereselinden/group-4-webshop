@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import LoginIcon from "@mui/icons-material/Login";
-import IconButton from "@mui/material/IconButton";
-import { Link } from "react-router-dom";
-import UserModal from "../UserModal/UserModal";
-import { useUserContext } from "../../context/UserContext";
-import PermIdentityIcon from "@mui/icons-material/PermIdentity";
+import LoginIcon from '@mui/icons-material/Login';
+import IconButton from '@mui/material/IconButton';
+import { Link } from 'react-router-dom';
+import UserModal from '../UserModal/UserModal';
+import { useUserContext } from '../../context/UserContext';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 
 type Props = {};
 
@@ -22,7 +22,7 @@ const ProfileButton = (props: Props) => {
           <UserModal />
         </>
       ) : (
-        <Link to="/profile">
+        <Link to="/profile/overview">
           <IconButton aria-label="go to profile page">
             <PermIdentityIcon color="textColor" />
           </IconButton>
