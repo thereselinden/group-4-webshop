@@ -1,24 +1,24 @@
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useState } from "react";
 
-import Typography from '@mui/material/Typography';
+import Typography from "@mui/material/Typography";
 
-import { useUserContext } from '../../context/UserContext';
-import useFetch from '../../hooks/useFetch';
-import fetchData from '../../utils/FetchData';
-import { IConfirmedOrder } from '../../interfaces/interfaces';
-import OrderAccordion from '../../components/OrderAccordion/OrderAccordion';
+import { useUserContext } from "../../context/UserContext";
+import useFetch from "../../hooks/useFetch";
+import fetchData from "../../utils/FetchData";
+import { IConfirmedOrder } from "../../interfaces/interfaces";
+import OrderAccordion from "../../components/OrderAccordion/OrderAccordion";
 
 type Props = {};
 
 const AllOrders = (props: Props) => {
   const { user } = useUserContext();
 
-  console.log('user', user);
+  console.log("user", user);
 
   const [[orders, setOrders], [loadingOrders, setLoadingOrders]] =
-    useFetch<IConfirmedOrder[]>('/api/orders');
+    useFetch<IConfirmedOrder[]>("/api/orders");
 
-  console.log('all orders', orders);
+  console.log("all orders", orders);
 
   const [expanded, setExpanded] = useState<string | false>(false);
   const [singleOrder, setSingleOrder] = useState<IConfirmedOrder | null>(null);
@@ -49,7 +49,7 @@ const AllOrders = (props: Props) => {
         Alla ordrar
       </Typography>
       {orders &&
-        orders.map(order => (
+        orders.map((order) => (
           <OrderAccordion
             key={order._id}
             order={order}
@@ -57,6 +57,7 @@ const AllOrders = (props: Props) => {
             loadingOrder={loadingOrder}
             handleChange={handleChange}
             expanded={expanded}
+            isAdmin={user?.isAdmin}
           />
         ))}
     </>
