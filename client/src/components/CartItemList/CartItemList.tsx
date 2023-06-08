@@ -1,26 +1,27 @@
-import ListItem from '@mui/material/ListItem';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
-import { List } from '@mui/material';
+import ListItem from "@mui/material/ListItem";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import RemoveIcon from "@mui/icons-material/Remove";
+import AddIcon from "@mui/icons-material/Add";
+import { List } from "@mui/material";
 
-import { useCartContext } from '../../context/CartContext';
+import { useCartContext } from "../../context/CartContext";
 
 type Props = {};
 
 const CartItemList = (props: Props) => {
-  const { cartItems, calcTotal, addToCart, removeFromCart } = useCartContext();
+  const { cartItems, calcProductTotal, addToCart, removeFromCart } =
+    useCartContext();
   return (
     <Box>
-      {cartItems.map(item => (
+      {cartItems.map((item) => (
         <ListItem
           sx={{
-            display: 'grid',
-            justifyContent: 'space-between',
-            gridTemplateColumns: '1fr 2fr auto',
+            display: "grid",
+            justifyContent: "space-between",
+            gridTemplateColumns: "1fr 2fr auto",
             gap: 1,
           }}
           key={item.product._id}
@@ -62,12 +63,6 @@ const CartItemList = (props: Props) => {
           </Box>
         </ListItem>
       ))}
-      <List>
-        <ListItem sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Typography variant="h6">Totalsumma</Typography>
-          <Typography variant="h6">{calcTotal()} SEK</Typography>
-        </ListItem>
-      </List>
     </Box>
   );
 };

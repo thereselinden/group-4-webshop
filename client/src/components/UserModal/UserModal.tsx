@@ -1,46 +1,46 @@
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import LoginForm from '../Form/LoginForm';
-import { useState } from 'react';
-import RegisterForm from '../Form/RegisterForm';
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import LoginForm from "../Form/LoginForm";
+import { useState } from "react";
+import RegisterForm from "../Form/RegisterForm";
+import { useUserContext } from "../../context/UserContext";
 
 const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 500,
-  bgcolor: 'background.paper',
+  bgcolor: "background.paper",
   //border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
 
-type Props = {
-  open: boolean;
-  handleClose: () => void;
-};
-
-const UserModal = ({ open, handleClose }: Props) => {
+const UserModal = () => {
   const [login, setLogin] = useState(true);
+  const { userModal, setUserModal, setRegisterSuccess, setErrorMessage } =
+    useUserContext();
 
   const toggleForm = () => {
     setLogin(!login);
+    setRegisterSuccess(false);
+    setErrorMessage(null);
   };
 
   return (
     <div>
       <Modal
-        open={open}
-        onClose={() => handleClose()}
+        open={userModal}
+        onClose={() => setUserModal(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
           {login ? (
-            <LoginForm toggleForm={toggleForm} handleClose={handleClose} />
+            <LoginForm toggleForm={toggleForm} />
           ) : (
             <RegisterForm toggleForm={toggleForm} />
           )}

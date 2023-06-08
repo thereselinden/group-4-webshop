@@ -10,25 +10,19 @@ import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 type Props = {};
 
 const ProfileButton = (props: Props) => {
-  const [open, setOpen] = useState(false);
-  console.log('modal open state', open);
-
-  const { user } = useUserContext();
-
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const { user, setUserModal } = useUserContext();
 
   return (
     <>
       {!user ? (
         <>
-          <IconButton aria-label="login" onClick={handleOpen}>
+          <IconButton aria-label="login" onClick={() => setUserModal(true)}>
             <LoginIcon color="textColor" />
           </IconButton>
-          <UserModal handleClose={handleClose} open={open} />
+          <UserModal />
         </>
       ) : (
-        <Link to="/profile">
+        <Link to="/profile/overview">
           <IconButton aria-label="go to profile page">
             <PermIdentityIcon color="textColor" />
           </IconButton>

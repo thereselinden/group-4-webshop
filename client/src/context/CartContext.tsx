@@ -14,7 +14,8 @@ export const CartContext = createContext<ICartContext>({
   cartItems: [],
   addToCart: () => {},
   removeFromCart: () => {},
-  calcTotal: () => {},
+  clearCart: () => {},
+  calcProductTotal: () => {},
   numOfProducts: () => {},
 });
 
@@ -63,7 +64,11 @@ const CartProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
-  const calcTotal = (): number => {
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
+  const calcProductTotal = (): number => {
     let sum = 0;
     cartItems.forEach(item => (sum += item.quantity * item.product.price));
 
@@ -85,7 +90,14 @@ const CartProvider = ({ children }: PropsWithChildren) => {
   //Proivdea med value ut det vi vill göra synligt. Value måste matcha Interface. Eftersom vi typat upp context så. Därför value propen. {{}} pga gör det som ett objekt
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, calcTotal, numOfProducts }}
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        clearCart,
+        calcProductTotal,
+        numOfProducts,
+      }}
     >
       {children}
     </CartContext.Provider>

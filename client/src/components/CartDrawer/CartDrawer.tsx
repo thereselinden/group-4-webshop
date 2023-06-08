@@ -1,32 +1,33 @@
-import { useNavigate } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import Typography from '@mui/material/Typography';
-import CloseIcon from '@mui/icons-material/Close';
-import IconButton from '@mui/material/IconButton';
-import CartItemList from '../CartItemList/CartItemList';
+import { useNavigate } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
 
-import Button from '@mui/material/Button';
+import Divider from "@mui/material/Divider";
+import Typography from "@mui/material/Typography";
+import CloseIcon from "@mui/icons-material/Close";
+import IconButton from "@mui/material/IconButton";
+import CartItemList from "../CartItemList/CartItemList";
 
-import { useCartContext } from '../../context/CartContext';
+import Button from "@mui/material/Button";
+
+import { useCartContext } from "../../context/CartContext";
 
 type Props = {
   drawerOpen: boolean;
   setDrawerOpen: (drawerOpen: boolean) => void;
 };
 const CartDrawer = ({ drawerOpen, setDrawerOpen }: Props) => {
-  const { cartItems } = useCartContext();
-  console.log('CartDrawer', drawerOpen);
+  const { cartItems, calcProductTotal } = useCartContext();
   const navigate = useNavigate();
 
   const toggleDrawer =
     () => (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
-        event.type === 'keydown' &&
-        ((event as React.KeyboardEvent).key === 'Tab' ||
-          (event as React.KeyboardEvent).key === 'Shift')
+        event.type === "keydown" &&
+        ((event as React.KeyboardEvent).key === "Tab" ||
+          (event as React.KeyboardEvent).key === "Shift")
       ) {
         return;
       }
@@ -35,14 +36,14 @@ const CartDrawer = ({ drawerOpen, setDrawerOpen }: Props) => {
     };
 
   const handleCheckout = () => {
-    navigate('/checkout');
+    navigate("/checkout");
     setDrawerOpen(false);
     //toggleDrawer();
     // CartDrawer
   };
 
   const handleShopping = () => {
-    navigate('/');
+    navigate("/");
     setDrawerOpen(false);
     //toggleDrawer();
     // CartDrawer
@@ -57,9 +58,9 @@ const CartDrawer = ({ drawerOpen, setDrawerOpen }: Props) => {
       >
         <List
           sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
           }}
         >
           <Typography variant="h6">Din varukorg</Typography>
@@ -73,23 +74,31 @@ const CartDrawer = ({ drawerOpen, setDrawerOpen }: Props) => {
             {cartItems.length < 1 ? (
               <Typography>Varukorgen är tom</Typography>
             ) : (
-              <CartItemList />
+              <>
+                <CartItemList />
+                <List>
+                  <ListItem
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography variant="h6">Summa</Typography>
+                    <Typography variant="h6">
+                      {calcProductTotal()} SEK
+                    </Typography>
+                  </ListItem>
+                </List>
+              </>
             )}
           </>
         </List>
         <Divider />
 
         <Button
-          // onClick={toggleDrawer()}
-          // toggleDrawer();
-          // }}
           onClick={handleCheckout}
-          // onClick={toggleDrawer()}
           disabled={cartItems.length < 1}
           fullWidth
           variant="contained"
           style={{
-            marginBottom: '1rem',
+            marginBottom: "1rem",
           }}
           color="accent"
         >
