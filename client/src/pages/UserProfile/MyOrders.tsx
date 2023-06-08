@@ -23,29 +23,39 @@ type Props = {};
 
 const MyOrders = (props: Props) => {
   const { user } = useUserContext();
-  const [[orders, setOrders]] = useFetch<IConfirmedOrder[]>('/api/orders');
+
+  console.log('user', user);
+
+  let [[orders, setOrders], [loadingOrders, setLoadingOrders]] =
+    useFetch<IConfirmedOrder[]>('/api/orders');
+
+  if (orders && user?.isAdmin) {
+    orders = orders?.filter(order => order.customer._id === user?._id);
+    console.log('inne i admin filter if');
+  }
+
   console.log('all orders', orders);
 
   const [expanded, setExpanded] = useState<string | false>(false);
+  const [singleOrder, setSingleOrder] = useState<IConfirmedOrder | null>(null);
+  const [loadingOrder, setLoadingOrder] = useState<boolean>(false);
 
   const handleChange =
-    (panel: string) => (event: SyntheticEvent, isExpanded: boolean) => {
+    (panel: string, orderId: string) =>
+    (event: SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false);
-      // OM VI TAR IN ID HÄR KAN VI SKICKA VIDARE TILL FUNKTION NEDAN?
-      //  handleProductFetch(id);
+      handleSingleOrder(orderId);
     };
 
-  // OM VI FÅR TILL KANSKE EN PROMISE ALL OM DET ÄR FLER ÄN 1 VARA DVS BLIR FLER /PRODUCT/ID FETCHAR?
-  const handleProductFetch = async () => {
-    console.log(
-      'parameter',
-      id.forEach(i => console.log(i))
-    );
+  const handleSingleOrder = async (id: string) => {
+    setLoadingOrder(true);
     try {
-      const product = await fetchData(`/api/product/${id}`);
-      console.log('product', product);
+      const order = await fetchData<IConfirmedOrder>(`/api/orders/${id}`);
+      setSingleOrder(order);
+      setLoadingOrder(false);
     } catch (err) {
       console.log(err);
+      setLoadingOrder(false);
     }
   };
 
@@ -65,10 +75,7 @@ const MyOrders = (props: Props) => {
         orders.map((order, index) => (
           <Accordion
             expanded={expanded === `panel${index}`}
-            onChange={handleChange(
-              `panel${index}`
-              // KAN VI SKICKA IN PRODUKT ID HÄR?
-            )}
+            onChange={handleChange(`panel${index}`, order._id)}
             sx={{ mb: 3 }}
             key={order._id}
           >
@@ -104,12 +111,17 @@ const MyOrders = (props: Props) => {
                 )} SEK*/}
               </Typography>
             </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Nulla facilisi. Phasellus sollicitudin nulla et quam mattis
-                feugiat. Aliquam eget maximus est, id dignissim quam.
-              </Typography>
-            </AccordionDetails>
+            {loadingOrder
+              ? 'Laddar single order....'
+              : singleOrder && (
+                  <AccordionDetails>
+                    {singleOrder.orderItems.map(item => (
+                      <Typography key={item.product._id}>
+                        {item.product.title}
+                      </Typography>
+                    ))}
+                  </AccordionDetails>
+                )}
           </Accordion>
         ))}
     </>
