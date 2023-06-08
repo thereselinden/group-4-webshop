@@ -17,7 +17,8 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import { Button, Chip, Stack } from "@mui/material";
+import { Chip, Stack } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 
 type Props = {
   order: IConfirmedOrder;
@@ -88,42 +89,47 @@ const OrderAccordion = ({
           )}
         </Typography>
       </AccordionSummary>
-      {loadingOrder
-        ? "Laddar single order...."
-        : singleOrder && (
-            <AccordionDetails
-              sx={{ display: "flex", justifyContent: "space-between" }}
-            >
-              <Box>
-                {singleOrder.orderItems.map((item) => (
-                  <Typography key={item.product._id}>
-                    {item.product.title}
-                  </Typography>
-                ))}
-              </Box>
-              <Box>
-                {isAdmin && (
-                  <>
-                    <Stack direction="row" spacing={1}>
-                      {!order.shipped ? (
-                        <Chip
-                          label="Markera som skickad"
-                          color="success"
-                          /* onClick={handleClick}*/
-                        />
-                      ) : (
-                        <Chip
-                          label="Ångra skickad"
-                          color="warning"
-                          /* onClick={handleClick}*/
-                        />
-                      )}
-                    </Stack>
-                  </>
-                )}
-              </Box>
-            </AccordionDetails>
+
+      <AccordionDetails
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <Box>
+          {loadingOrder ? (
+            <CircularProgress color="accent" />
+          ) : (
+            singleOrder &&
+            singleOrder.orderItems.map((item) => (
+              <Typography key={item.product._id}>
+                {item.product.title}
+              </Typography>
+            ))
           )}
+        </Box>
+        <Box>
+          {isAdmin && (
+            <>
+              <Stack direction="row" spacing={1}>
+                {!order.shipped ? (
+                  <Chip
+                    label="Markera som skickad"
+                    color="success"
+                    /* onClick={handleClick}*/
+                  />
+                ) : (
+                  <Chip
+                    label="Ångra skickad"
+                    color="warning"
+                    /* onClick={handleClick}*/
+                  />
+                )}
+              </Stack>
+            </>
+          )}
+        </Box>
+      </AccordionDetails>
     </Accordion>
   );
 };
