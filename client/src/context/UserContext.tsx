@@ -4,9 +4,9 @@ import {
   useContext,
   useEffect,
   useState,
-} from "react";
+} from 'react';
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 import {
   IUserContext,
@@ -14,9 +14,9 @@ import {
   ILoginForm,
   ILoginResponse,
   IRegisterForm,
-} from "../interfaces/interfaces";
-import useFetch from "../hooks/useFetch";
-import fetchData from "../utils/FetchData";
+} from '../interfaces/interfaces';
+import useFetch from '../hooks/useFetch';
+import fetchData from '../utils/FetchData';
 
 /* export const UserContext = createContext<IUserContext>({
   user: {
@@ -48,10 +48,10 @@ const UserProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     const alreadyLoggedIn = async (): Promise<void> => {
       try {
-        const isAuth = await fetchData<IUser>("api/users/authorize");
+        const isAuth = await fetchData<IUser>('/api/users/authorize');
         setUser(isAuth);
       } catch (error) {
-        console.log("error alreadyloggedin");
+        console.log('error alreadyloggedin');
       }
     };
     alreadyLoggedIn();
@@ -62,8 +62,8 @@ const UserProvider = ({ children }: PropsWithChildren) => {
     setIsLoading(true);
     try {
       const user = await fetchData<IUser>(
-        "api/users/login",
-        "POST",
+        '/api/users/login',
+        'POST',
         JSON.stringify(credentials)
       );
       setUser(user);
@@ -71,7 +71,7 @@ const UserProvider = ({ children }: PropsWithChildren) => {
       setErrorMessage(null);
       setUserModal(false);
     } catch (error) {
-      setErrorMessage("Felaktiga användaruppgifter");
+      setErrorMessage('Felaktiga användaruppgifter');
       setIsLoading(false);
     }
   };
@@ -80,27 +80,27 @@ const UserProvider = ({ children }: PropsWithChildren) => {
     setIsLoading(true);
     try {
       await fetchData<IUser>(
-        "api/users/register",
-        "POST",
+        '/api/users/register',
+        'POST',
         JSON.stringify(credentials)
       );
       setRegisterSuccess(true);
       setIsLoading(false);
       setErrorMessage(null);
     } catch (error) {
-      setErrorMessage("Epostaddress redan registrerad");
+      setErrorMessage('Epostaddress redan registrerad');
       setIsLoading(false);
     }
   };
 
   const logout = async (): Promise<void> => {
     try {
-      await fetchData<IUser>("api/users/logout", "POST");
+      await fetchData<IUser>('/api/users/logout', 'POST');
       //if (!res.ok !== 200) throw new Error('res error login');
 
-      console.log("logging out");
+      console.log('logging out');
       setUser(null);
-      navigate("/");
+      navigate('/');
     } catch (error) {
       console.log(error as Error);
       console.log((error as Error).message);
