@@ -14,6 +14,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import { useUserContext } from '../../context/UserContext';
 import Overview from './OverView';
 import MyOrders from './MyOrders';
+import AllOrders from './AllOrders';
+import AllProducts from './AllProducts';
 
 type Props = {};
 
@@ -25,14 +27,17 @@ const UserProfile = (props: Props) => {
       <Box sx={{ display: 'grid', gridTemplateColumns: '250px auto', gap: 2 }}>
         <Paper variant="outlined" sx={{ height: 'fit-content' }}>
           <List>
-            <Typography
-              variant="h5"
-              component="h1"
-              sx={{ textAlign: 'center', mb: 2 }}
-            >
-              Mina sidor
-            </Typography>
-            <NavLink to="profile/my-orders">
+            <NavLink to="/profile/overview">
+              <Typography
+                variant="h5"
+                component="h1"
+                sx={{ textAlign: 'center', mb: 2 }}
+              >
+                Mina sidor
+              </Typography>
+            </NavLink>
+
+            <NavLink to="/profile/my-orders">
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon>
@@ -44,22 +49,27 @@ const UserProfile = (props: Props) => {
             </NavLink>
             {user?.isAdmin && (
               <>
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <ShoppingBasketIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={'Alla ordrar'} />
-                  </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <ShoppingBasketIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={'Alla produkter'} />
-                  </ListItemButton>
-                </ListItem>
+                <NavLink to="/profile/admin-orders">
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <ShoppingBasketIcon />
+                      </ListItemIcon>
+                      <ListItemText primary={'Alla ordrar'} />
+                    </ListItemButton>
+                  </ListItem>
+                </NavLink>
+
+                <NavLink to="/profile/admin-products">
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <ShoppingBasketIcon />
+                      </ListItemIcon>
+                      <ListItemText primary={'Alla produkter'} />
+                    </ListItemButton>
+                  </ListItem>
+                </NavLink>
               </>
             )}
 
@@ -76,10 +86,10 @@ const UserProfile = (props: Props) => {
 
         <Box component="div" sx={{ flexGrow: 1 }}>
           <Routes>
-            <Route path="/overview" element={<Overview />} />
-            <Route path="profile/my-orders" element={<MyOrders />} />
-            <Route path="/profile/admin-orders" element={<Overview />} />
-            <Route path="/profile/admin-products" element={<Overview />} />
+            <Route path="overview" element={<Overview />} />
+            <Route path="my-orders" element={<MyOrders />} />
+            <Route path="admin-orders" element={<AllOrders />} />
+            <Route path="admin-products" element={<AllProducts />} />
           </Routes>
           {/* <Typography variant="h4" component="h1">
             Hej {user?.firstName}
