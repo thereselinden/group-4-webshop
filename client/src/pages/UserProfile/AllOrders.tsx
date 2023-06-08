@@ -28,7 +28,8 @@ const AllOrders = (props: Props) => {
     (panel: string, orderId: string) =>
     (event: SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false);
-      handleSingleOrder(orderId);
+      // Gör bara fetch vid öppning av accordion, inte vid stängning
+      if (isExpanded) handleSingleOrder(orderId);
     };
 
   const handleSingleOrder = async (id: string) => {
