@@ -12,6 +12,8 @@ const inventoryTextColor = (qty: number, color: string) => {
 
 export const inventories = (inventory: number) => {
   switch (true) {
+    case inventory < 1:
+      return <Typography variant="caption">Slut i lager</Typography>;
     case inventory < 5:
       return inventoryTextColor(inventory, red[500]);
     case inventory < 10:
