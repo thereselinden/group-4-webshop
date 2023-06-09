@@ -1,4 +1,4 @@
-import React from 'react';
+import { SyntheticEvent } from 'react';
 
 import Box from '@mui/material/Box';
 import Accordion from '@mui/material/Accordion';
@@ -9,7 +9,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { Chip, Stack } from '@mui/material';
-import CircularProgress from '@mui/material/CircularProgress';
 
 import { IConfirmedOrder } from '../../interfaces/interfaces';
 import {
@@ -17,35 +16,34 @@ import {
   calcOrderTotalProducts,
   formatOrderDay,
 } from '../../utils/helper';
+import BackDropLoader from '../BackDropLoader/BackDropLoader';
 
 type Props = {
   order: IConfirmedOrder;
-  singleOrder: IConfirmedOrder | null;
-  loadingOrder: boolean;
+
   handleChange: (
-    arg0: string,
-    arg1: string
+    arg0: string
   ) =>
-    | ((event: React.SyntheticEvent<Element, Event>, expanded: boolean) => void)
+    | ((event: SyntheticEvent<Element, Event>, expanded: boolean) => void)
     | undefined;
+  handleOrderShipped?: (arg0: string) => void;
   expanded: string | false;
   isAdmin?: boolean;
 };
 
 const OrderAccordion = ({
   order,
-  singleOrder,
-  loadingOrder,
+
   handleChange,
+  handleOrderShipped,
   expanded,
+
   isAdmin = false,
 }: Props) => {
-  console.log(isAdmin);
-
   return (
     <Accordion
       expanded={expanded === `panel${order._id}`}
-      onChange={handleChange(`panel${order._id}`, order._id)}
+      onChange={handleChange(`panel${order._id}`)}
       sx={{ mb: 3 }}
       key={order._id}
     >
@@ -80,7 +78,7 @@ const OrderAccordion = ({
           {/* {order.orderItems.map(item =>
           calcOrderItemTotal(item.quantity, item.price)
         )} SEK*/}
-          {order.shipped ? (
+          {order?.shipped ? (
             <CheckCircleIcon color="success" />
           ) : (
             <CheckCircleOutlineIcon color="disabled" />
@@ -95,33 +93,25 @@ const OrderAccordion = ({
         }}
       >
         <Box>
-          {loadingOrder ? (
-            <CircularProgress color="accent" />
-          ) : (
-            singleOrder &&
-            singleOrder.orderItems.map(item => (
-              <Typography key={item.product._id}>
-                {item.product.title}
-              </Typography>
-            ))
-          )}
+          {/* NÄR VI TAR BORT EN PRODUKT FRÅN DATA BASEN SÅ KAN VI INTE SKIRVA UT DETTA. EFTERSOM PRODUKT BLIR NULL
+          GÖRA EN KOLL OM PRDUKT FINNS - REFERENS I DB GÖR PROBLEMET
+          */}
+          {/* {order.orderItems.map(item => (
+            <Typography key={item.product._id}>{item.product.title}</Typography>
+          ))} */}
         </Box>
         <Box>
           {isAdmin && (
             <>
               <Stack direction="row" spacing={1}>
-                {!order.shipped ? (
+                {!order?.shipped ? (
                   <Chip
                     label="Markera som skickad"
-                    color="success"
-                    /* onClick={handleClick}*/
+                    color="secondary"
+                    onClick={() => handleOrderShipped(order._id)}
                   />
                 ) : (
-                  <Chip
-                    label="Ångra skickad"
-                    color="warning"
-                    /* onClick={handleClick}*/
-                  />
+                  <Chip label="Order skickad" color="success" />
                 )}
               </Stack>
             </>
