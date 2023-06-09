@@ -3,8 +3,14 @@ export interface NavItem {
   to: string;
 }
 
+export interface ICategory {
+  _id: string;
+  title: string;
+  description: string;
+}
+
 export interface IProduct {
-  categories: string[];
+  categories: ICategory[];
   deleted: boolean;
   description: string;
   image: string;
@@ -12,6 +18,14 @@ export interface IProduct {
   price: number;
   title: string;
   _id: string;
+}
+
+export interface IProductContext {
+  products: IProduct[] | null;
+  categories: ICategory[] | null;
+  isLoading: boolean;
+  getProduct: (arg0: string) => IProduct | void;
+  deleteProduct: (arg0: string) => void;
 }
 
 export interface ICartItem {
