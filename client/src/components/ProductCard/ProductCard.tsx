@@ -9,6 +9,7 @@ import { Box } from '@mui/system';
 import { IProduct } from '../../interfaces/interfaces';
 import AddToCartBtn from '../AddToCartBtn/AddToCartBtn';
 import { useCartContext } from '../../context/CartContext';
+import { IconButton } from '@mui/material';
 
 type Props = { product: IProduct };
 
@@ -43,7 +44,11 @@ const ProductCard = ({ product }: Props) => {
             <Typography variant="body2" color="text.secondary">
               {product.price} kr
             </Typography>
-            <AddToCartBtn onClick={handleAddToCart} />
+
+            <AddToCartBtn
+              disabled={product.inStock < 1}
+              onClick={handleAddToCart}
+            />
           </Box>
         </Box>
       </Link>
