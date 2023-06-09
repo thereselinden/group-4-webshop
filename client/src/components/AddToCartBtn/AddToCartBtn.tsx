@@ -5,14 +5,16 @@ import IconButton from '@mui/material/IconButton';
 
 type Props = {
   onClick: (e: MouseEvent<HTMLButtonElement>) => void;
+  disabled: boolean;
 };
 
-const AddToCartBtn = ({ onClick }: Props) => {
+const AddToCartBtn = ({ onClick, disabled }: Props) => {
   return (
     <IconButton
       color="accent"
       aria-label="add to shopping cart"
       onClick={e => onClick(e)}
+      disabled={disabled}
     >
       <AddShoppingCartIcon />
     </IconButton>
