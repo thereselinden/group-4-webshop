@@ -1,46 +1,39 @@
-import { SyntheticEvent, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from 'react';
 
-import Typography from "@mui/material/Typography";
+import Typography from '@mui/material/Typography';
 
-import { useUserContext } from "../../context/UserContext";
-import useFetch from "../../hooks/useFetch";
-import fetchData from "../../utils/FetchData";
-import { IConfirmedOrder } from "../../interfaces/interfaces";
-import OrderAccordion from "../../components/OrderAccordion/OrderAccordion";
+import { useUserContext } from '../../context/UserContext';
+import useFetch from '../../hooks/useFetch';
+import fetchData from '../../utils/FetchData';
+import { IConfirmedOrder } from '../../interfaces/interfaces';
+import OrderAccordion from '../../components/OrderAccordion/OrderAccordion';
+import BackDropLoader from '../../components/BackDropLoader/BackDropLoader';
 
 type Props = {};
 
 const AllOrders = (props: Props) => {
   const { user } = useUserContext();
 
-  console.log("user", user);
-
+  //const [orders, setOrders] = useState<IConfirmedOrder[] | null>(null)
   const [[orders, setOrders], [loadingOrders, setLoadingOrders]] =
-    useFetch<IConfirmedOrder[]>("/api/orders");
+    useFetch<IConfirmedOrder[]>('/api/orders');
 
-  console.log("all orders", orders);
-
+  console.log('all orders', orders);
   const [expanded, setExpanded] = useState<string | false>(false);
-  const [singleOrder, setSingleOrder] = useState<IConfirmedOrder | null>(null);
-  const [loadingOrder, setLoadingOrder] = useState<boolean>(false);
 
   const handleChange =
-    (panel: string, orderId: string) =>
-    (event: SyntheticEvent, isExpanded: boolean) => {
+    (panel: string) => (event: SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false);
-      // Gör bara fetch vid öppning av accordion, inte vid stängning
-      if (isExpanded) handleSingleOrder(orderId);
     };
 
-  const handleSingleOrder = async (id: string) => {
-    setLoadingOrder(true);
+  const handleOrderShipped = async (id: string) => {
     try {
-      const order = await fetchData<IConfirmedOrder>(`/api/orders/${id}`);
-      setSingleOrder(order);
-      setLoadingOrder(false);
+      await fetchData<IConfirmedOrder>(`/api/orders/${id}`, 'PUT');
+
+      const updatedOrders = await fetchData<IConfirmedOrder[]>(`/api/orders/`);
+      setOrders(updatedOrders);
     } catch (err) {
       console.log(err);
-      setLoadingOrder(false);
     }
   };
 
@@ -49,14 +42,14 @@ const AllOrders = (props: Props) => {
       <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
         Alla ordrar
       </Typography>
+      {loadingOrders && <BackDropLoader loading={loadingOrders} />}
       {orders &&
-        orders.map((order) => (
+        orders.map(order => (
           <OrderAccordion
             key={order._id}
             order={order}
-            singleOrder={singleOrder}
-            loadingOrder={loadingOrder}
             handleChange={handleChange}
+            handleOrderShipped={handleOrderShipped}
             expanded={expanded}
             isAdmin={user?.isAdmin}
           />
