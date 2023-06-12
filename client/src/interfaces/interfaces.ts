@@ -10,22 +10,26 @@ export interface ICategory {
 }
 
 export interface IProduct {
-  categories: ICategory[];
+  categories?: ICategory[];
   deleted: boolean;
   description: string;
   image: string;
   inStock: number;
   price: number;
   title: string;
-  _id: string;
+  _id?: string | null;
 }
 
 export interface IProductContext {
   products: IProduct[] | null;
   categories: ICategory[] | null;
   isLoading: boolean;
+  productModal: boolean;
+  setProductModal: (arg0: boolean) => void;
   getProduct: (arg0: string) => IProduct | void;
   deleteProduct: (arg0: string) => void;
+  updateProduct: (arg0: IProduct) => void;
+  addProduct: (arg0: IProduct) => void;
 }
 
 export interface ICartItem {
