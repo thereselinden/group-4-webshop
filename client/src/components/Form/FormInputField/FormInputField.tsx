@@ -1,4 +1,5 @@
 import { Controller } from 'react-hook-form';
+import { HTMLInputTypeAttribute } from 'react';
 
 import TextField from '@mui/material/TextField';
 
@@ -6,11 +7,21 @@ type Props = {
   name: string;
   control: any;
   label: string;
-  type: string;
+  type: HTMLInputTypeAttribute | undefined;
   disabled?: boolean;
+  multiline?: boolean;
+  minRows?: number;
 };
 
-const FormInputField = ({ name, control, label, type, disabled }: Props) => {
+const FormInputField = ({
+  name,
+  control,
+  label,
+  type,
+  disabled,
+  multiline,
+  minRows,
+}: Props) => {
   return (
     <Controller
       name={name}
@@ -26,6 +37,8 @@ const FormInputField = ({ name, control, label, type, disabled }: Props) => {
           fullWidth
           label={label}
           disabled={disabled}
+          multiline={multiline}
+          minRows={minRows}
           variant="outlined"
           color="textColor"
         />
