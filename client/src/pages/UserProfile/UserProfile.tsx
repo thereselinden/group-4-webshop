@@ -10,19 +10,30 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import Typography from '@mui/material/Typography';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import StoreIcon from '@mui/icons-material/Store';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 
 import { useUserContext } from '../../context/UserContext';
 import Overview from './OverView';
 import MyOrders from './MyOrders';
 import AllOrders from './AllOrders';
 import AllProducts from './AllProducts';
+import AddProduct from './AddProduct';
 
 const UserProfile = () => {
   const { user, logout } = useUserContext();
 
   return (
     <>
-      <Box sx={{ display: 'grid', gridTemplateColumns: '250px auto', gap: 2 }}>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { sm: '250px auto' },
+          padding: { xs: 1, sm: 0 },
+          gap: 2,
+        }}
+      >
         <Paper variant="outlined" sx={{ height: 'fit-content' }}>
           <List>
             <NavLink to="/profile/overview">
@@ -51,7 +62,7 @@ const UserProfile = () => {
                   <ListItem disablePadding>
                     <ListItemButton>
                       <ListItemIcon>
-                        <ShoppingBasketIcon />
+                        <StoreIcon />
                       </ListItemIcon>
                       <ListItemText primary={'Alla ordrar'} />
                     </ListItemButton>
@@ -62,9 +73,20 @@ const UserProfile = () => {
                   <ListItem disablePadding>
                     <ListItemButton>
                       <ListItemIcon>
-                        <ShoppingBasketIcon />
+                        <InventoryIcon />
                       </ListItemIcon>
                       <ListItemText primary={'Alla produkter'} />
+                    </ListItemButton>
+                  </ListItem>
+                </NavLink>
+
+                <NavLink to="/profile/admin-all-products">
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <AddBusinessIcon />
+                      </ListItemIcon>
+                      <ListItemText primary={'Lägg till produkt'} />
                     </ListItemButton>
                   </ListItem>
                 </NavLink>
@@ -88,9 +110,12 @@ const UserProfile = () => {
             <Route path="my-orders" element={<MyOrders />} />
             <Route path="admin-orders" element={<AllOrders />} />
             <Route path="admin-products" element={<AllProducts />} />
+            <Route path="admin-all-products" element={<AddProduct />} />
           </Routes>
         </Box>
       </Box>
+
+      {/* <ProductModal productId={productId} setProductId={setProductId} /> */}
     </>
   );
 };
