@@ -33,13 +33,12 @@ type Props = {
 
 const OrderAccordion = ({
   order,
-
   handleChange,
   handleOrderShipped,
   expanded,
-
   isAdmin = false,
 }: Props) => {
+  console.log('order', order);
   return (
     <Accordion
       expanded={expanded === `panel${order._id}`}
@@ -53,6 +52,7 @@ const OrderAccordion = ({
         id="panel1bh-header"
       >
         <Box sx={{ width: '25%' }}>
+          <Typography>#{order.orderNumber}</Typography>
           <Typography>{formatOrderDay(order.createdAt)}</Typography>
           <Typography variant="caption" sx={{ color: 'text.secondary' }}>
             {calcOrderTotalProducts(order.orderItems)}{' '}
@@ -73,11 +73,8 @@ const OrderAccordion = ({
             gap: 1,
           }}
         >
-          {/* TODO! DETTA TAR EJ HÄNSYN TILL FRAKTKOSTNADEN */}
-          {calcOrderProductTotal(order.orderItems)} SEK
-          {/* {order.orderItems.map(item =>
-          calcOrderItemTotal(item.quantity, item.price)
-        )} SEK*/}
+          {calcOrderProductTotal(order.orderItems) + order.shippingMethod.price}{' '}
+          SEK
           {order?.shipped ? (
             <CheckCircleIcon color="success" />
           ) : (
@@ -89,18 +86,33 @@ const OrderAccordion = ({
       <AccordionDetails
         sx={{
           display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'space-between',
         }}
       >
-        <Box>
-          {/* NÄR VI TAR BORT EN PRODUKT FRÅN DATA BASEN SÅ KAN VI INTE SKIRVA UT DETTA. EFTERSOM PRODUKT BLIR NULL
-          GÖRA EN KOLL OM PRDUKT FINNS - REFERENS I DB GÖR PROBLEMET
-          */}
-          {/* {order.orderItems.map(item => (
-            <Typography key={item.product._id}>{item.product.title}</Typography>
-          ))} */}
+        <Box sx={{ width: '90%' }}>
+          {order.orderItems.map(item => (
+            <Box
+              key={item.product._id}
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Typography key={item.product._id}>
+                {item.quantity} x {item.product.title}
+              </Typography>
+              <Typography>{item.price} SEK </Typography>
+            </Box>
+          ))}
+          <Typography variant="subtitle2">
+            Fraktmetod {order.shippingMethod.company} (
+            {order.shippingMethod.price} SEK)
+          </Typography>
+
+          {/* </Box> */}
         </Box>
-        <Box>
+        <Box sx={{ display: 'flex', flexDirection: 'row-reverse' }}>
           {isAdmin && (
             <>
               <Stack direction="row" spacing={1}>
