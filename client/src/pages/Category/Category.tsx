@@ -11,7 +11,6 @@ const Category = (props: Props) => {
   const [searchParams] = useSearchParams();
 
   const catId = searchParams.get('category');
-  console.log('catid:', catId);
 
   let categoryDetails: ICategory | void;
   if (catId) categoryDetails = getCategoryContext(catId);
@@ -23,8 +22,6 @@ const Category = (props: Props) => {
       product?.categories?.some(category => category._id === catId)
     );
   }
-
-  console.log('filtered:', filteredProducts);
 
   return (
     <>
