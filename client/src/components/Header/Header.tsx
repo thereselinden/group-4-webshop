@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -24,7 +24,7 @@ type Props = {};
 
 const drawerWidth = 240;
 // const navItems = [
-//   { name: 'T-shirts', to: '?category=t-shirts' },
+//   { name: 'T-shirts', to: 'products?category=t-shirts' },
 //   { name: 'Tröjor', to: '?category=trojor' },
 //   { name: 'Accessoarer', to: '?category=accessoarer' },
 //   { name: 'Kontakt', to: 'kontakt' },
@@ -49,11 +49,13 @@ const Header = (props: Props) => {
       <Divider />
       <List>
         {navItems?.map(item => (
-          <ListItem key={item.title} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item.title} color="textColor" />
-            </ListItemButton>
-          </ListItem>
+          <NavLink to={`/category/?category=${item._id}`} key={item.title}>
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textAlign: 'center' }}>
+                <ListItemText primary={item.title} color="textColor" />
+              </ListItemButton>
+            </ListItem>
+          </NavLink>
         ))}
       </List>
     </Box>
