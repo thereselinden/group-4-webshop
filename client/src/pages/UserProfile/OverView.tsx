@@ -11,13 +11,11 @@ const Overview = () => {
       </Typography>
       {user?.isAdmin ? (
         <Typography>
-          Använd menyn till vänster för att se dina köp, hantera ordrar,
-          uppdatera eller lägg till produkt!
+          Använd menyn för att se dina köp, hantera ordrar, uppdatera eller lägg
+          till produkt!
         </Typography>
       ) : (
-        <Typography>
-          Använd menyn till vänster för att se alla dina köp!
-        </Typography>
+        <Typography>Använd menyn för att se alla dina köp!</Typography>
       )}
     </>
   );
