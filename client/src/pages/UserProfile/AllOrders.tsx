@@ -14,11 +14,9 @@ type Props = {};
 const AllOrders = (props: Props) => {
   const { user } = useUserContext();
 
-  //const [orders, setOrders] = useState<IConfirmedOrder[] | null>(null)
   const [[orders, setOrders], [loadingOrders, setLoadingOrders]] =
     useFetch<IConfirmedOrder[]>('/api/orders');
 
-  console.log('all orders', orders);
   const [expanded, setExpanded] = useState<string | false>(false);
 
   const handleChange =
