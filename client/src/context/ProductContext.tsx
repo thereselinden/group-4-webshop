@@ -20,7 +20,6 @@ const ProductProvider = ({ children }: PropsWithChildren) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [productModal, setProductModal] = useState<boolean>(false);
-  console.log('in context productModal', productModal);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -79,7 +78,6 @@ const ProductProvider = ({ children }: PropsWithChildren) => {
   };
 
   const updateProduct = async (product: IProduct): Promise<void> => {
-    console.log('inside update product context');
     try {
       await fetchData(
         `/api/products/${product._id}`,
@@ -94,7 +92,6 @@ const ProductProvider = ({ children }: PropsWithChildren) => {
   };
 
   const addProduct = async (product: IProduct): Promise<void> => {
-    console.log('inside add product context');
     try {
       await fetchData(`/api/products`, 'POST', JSON.stringify(product));
       getProducts();
