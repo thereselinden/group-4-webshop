@@ -22,7 +22,7 @@ const ProductCard = ({ product }: Props) => {
   };
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <Link to={product._id}>
+      <Link to={`/${product._id}`}>
         <CardMedia
           component={'img'}
           sx={{ height: 240 }}
