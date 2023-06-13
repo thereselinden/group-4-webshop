@@ -57,6 +57,12 @@ const ProductProvider = ({ children }: PropsWithChildren) => {
     return;
   };
 
+  const getCategoryContext = (id: string): ICategory | void => {
+    const category = categories?.find(cat => cat._id === id);
+    if (category) return category;
+    return;
+  };
+
   const deleteProduct = async (id: string): Promise<void> => {
     const product = getProduct(id);
     const deletedProduct = { ...product, deleted: true };
@@ -107,6 +113,7 @@ const ProductProvider = ({ children }: PropsWithChildren) => {
         productModal,
         setProductModal,
         getProduct,
+        getCategoryContext,
         deleteProduct,
         updateProduct,
         addProduct,
