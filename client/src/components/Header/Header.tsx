@@ -18,20 +18,24 @@ import Typography from '@mui/material/Typography';
 import NavLinks from '../NavLinks/NavLinks';
 import Cart from '../Cart/Cart';
 import ProfileButton from '../ProfileButton/ProfileButton';
+import { useProductContext } from '../../context/ProductContext';
 
 type Props = {};
 
 const drawerWidth = 240;
-const navItems = [
-  { name: 'T-shirts', to: '?category=t-shirts' },
-  { name: 'Tröjor', to: '?category=trojor' },
-  { name: 'Accessoarer', to: '?category=accessoarer' },
-  { name: 'Kontakt', to: 'kontakt' },
-];
+// const navItems = [
+//   { name: 'T-shirts', to: '?category=t-shirts' },
+//   { name: 'Tröjor', to: '?category=trojor' },
+//   { name: 'Accessoarer', to: '?category=accessoarer' },
+//   { name: 'Kontakt', to: 'kontakt' },
+// ];
 
 const Header = (props: Props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { categories } = useProductContext();
+
+  const navItems = categories;
 
   const handleDrawerToggle = () => {
     setMobileOpen(prevState => !prevState);
@@ -44,10 +48,10 @@ const Header = (props: Props) => {
       </Typography>
       <Divider />
       <List>
-        {navItems.map(item => (
-          <ListItem key={item.name} disablePadding>
+        {navItems?.map(item => (
+          <ListItem key={item.title} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item.name} color="textColor" />
+              <ListItemText primary={item.title} color="textColor" />
             </ListItemButton>
           </ListItem>
         ))}
@@ -72,14 +76,16 @@ const Header = (props: Props) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'block' } }}
-          >
-            <Link to="/">Webbshop</Link>
-          </Typography>
-          <NavLinks navItems={navItems} />
+          <Box sx={{ display: 'flex' }}>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ flexGrow: 1, display: { xs: 'block' } }}
+            >
+              <Link to="/">Webbshop</Link>
+            </Typography>
+            <NavLinks navItems={navItems} />
+          </Box>
           <Box sx={{ display: 'flex' }}>
             <ProfileButton />
             <Cart />
