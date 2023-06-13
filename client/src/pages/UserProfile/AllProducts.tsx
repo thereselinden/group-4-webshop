@@ -49,6 +49,7 @@ const AllProducts = (props: Props) => {
     display: 'flex',
     flexDirection: 'column',
     gap: 1,
+
     '@media (min-width: 900px)': {
       flexDirection: 'row',
     },
@@ -68,7 +69,12 @@ const AllProducts = (props: Props) => {
         products?.map(product => (
           // <div key={product._id}>
           <Card
-            sx={{ xs: { maxWidth: '100%' } }}
+            sx={{
+              xs: { maxWidth: '100%' },
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+            }}
             key={product._id}
             component="article"
           >
@@ -78,7 +84,7 @@ const AllProducts = (props: Props) => {
               height="140"
               image={product.image}
             />
-            <CardContent>
+            <CardContent sx={{ height: '100%' }}>
               <Typography gutterBottom variant="h5" component="h2">
                 {product.title}
               </Typography>

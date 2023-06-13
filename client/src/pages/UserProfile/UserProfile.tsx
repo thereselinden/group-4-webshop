@@ -30,7 +30,7 @@ const UserProfile = () => {
         component="section"
         sx={{
           display: 'grid',
-          gridTemplateColumns: { sm: '250px auto' },
+          gridTemplateColumns: { md: '250px auto' },
           padding: { xs: 1, sm: 0 },
           gap: 2,
         }}
@@ -51,7 +51,12 @@ const UserProfile = () => {
               </Typography>
             </NavLink>
 
-            <NavLink to="/profile/my-orders">
+            <NavLink
+              to="/profile/my-orders"
+              style={({ isActive }) => ({
+                color: isActive ? '#f39709' : 'inherit',
+              })}
+            >
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon>
@@ -63,7 +68,12 @@ const UserProfile = () => {
             </NavLink>
             {user?.isAdmin && (
               <>
-                <NavLink to="/profile/admin-orders">
+                <NavLink
+                  to="/profile/admin-orders"
+                  style={({ isActive }) => ({
+                    color: isActive ? '#f39709' : 'inherit',
+                  })}
+                >
                   <ListItem disablePadding>
                     <ListItemButton>
                       <ListItemIcon>
@@ -74,7 +84,12 @@ const UserProfile = () => {
                   </ListItem>
                 </NavLink>
 
-                <NavLink to="/profile/admin-products">
+                <NavLink
+                  to="/profile/admin-products"
+                  style={({ isActive }) => ({
+                    color: isActive ? '#f39709' : 'inherit',
+                  })}
+                >
                   <ListItem disablePadding>
                     <ListItemButton>
                       <ListItemIcon>
@@ -85,7 +100,12 @@ const UserProfile = () => {
                   </ListItem>
                 </NavLink>
 
-                <NavLink to="/profile/admin-all-products">
+                <NavLink
+                  to="/profile/admin-all-products"
+                  style={({ isActive }) => ({
+                    color: isActive ? '#f39709' : 'inherit',
+                  })}
+                >
                   <ListItem disablePadding>
                     <ListItemButton>
                       <ListItemIcon>
