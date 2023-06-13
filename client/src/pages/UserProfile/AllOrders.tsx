@@ -1,38 +1,37 @@
-import { SyntheticEvent, useEffect, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from "react";
 
-import Typography from '@mui/material/Typography';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Typography from "@mui/material/Typography";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
-import { useUserContext } from '../../context/UserContext';
-import useFetch from '../../hooks/useFetch';
-import fetchData from '../../utils/FetchData';
-import { IConfirmedOrder } from '../../interfaces/interfaces';
-import OrderAccordion from '../../components/OrderAccordion/OrderAccordion';
-import BackDropLoader from '../../components/BackDropLoader/BackDropLoader';
+import { useUserContext } from "../../context/UserContext";
+import useFetch from "../../hooks/useFetch";
+import fetchData from "../../utils/FetchData";
+import { IConfirmedOrder } from "../../interfaces/interfaces";
+import OrderAccordion from "../../components/OrderAccordion/OrderAccordion";
+import BackDropLoader from "../../components/BackDropLoader/BackDropLoader";
 
-type Props = {};
-
-const AllOrders = (props: Props) => {
+const AllOrders = () => {
   const { user } = useUserContext();
 
   const [[orders, setOrders], [loadingOrders, setLoadingOrders]] =
-    useFetch<IConfirmedOrder[]>('/api/orders');
+    useFetch<IConfirmedOrder[]>("/api/orders");
   const [expanded, setExpanded] = useState<string | false>(false);
-  const [filterOrderStatus, setFilterOrderStatus] = useState('Alla ordrar');
-  //const [filteredOrders, setFilteredOrders] = useState<IConfirmedOrder[]>([]);
+  const [filterOrderStatus, setFilterOrderStatus] =
+    useState<string>("Alla ordrar");
 
-  let filteredOrders: IConfirmedOrder[] | null = null;
-  if (orders) filteredOrders = [...orders];
-
-  console.log('filteredOrders högst upp', filteredOrders);
-
-  useEffect(() => {
-    console.log('filterorderstatus', filterOrderStatus);
-    filterOrders();
-  }, [filterOrderStatus]);
+  const filterOrders = () => {
+    switch (filterOrderStatus) {
+      case "Skickade":
+        return orders?.filter((order) => order.shipped) || [];
+      case "Ej skickade":
+        return orders?.filter((order) => !order.shipped) || [];
+      default:
+        return orders || [];
+    }
+  };
 
   const handleChange =
     (panel: string) => (event: SyntheticEvent, isExpanded: boolean) => {
@@ -41,7 +40,7 @@ const AllOrders = (props: Props) => {
 
   const handleOrderShipped = async (id: string) => {
     try {
-      await fetchData<IConfirmedOrder>(`/api/orders/${id}`, 'PUT');
+      await fetchData<IConfirmedOrder>(`/api/orders/${id}`, "PUT");
       const updatedOrders = await fetchData<IConfirmedOrder[]>(`/api/orders/`);
       setOrders(updatedOrders);
     } catch (err) {
@@ -53,32 +52,7 @@ const AllOrders = (props: Props) => {
     setFilterOrderStatus(event.target.value);
   };
 
-  const filterOrders = () => {
-    switch (filterOrderStatus) {
-      case 'Skickade': {
-        console.log('inside skickade', filterOrderStatus);
-
-        filteredOrders = orders?.filter(order => order.shipped) || [];
-        console.log('inside skickade filtered list', filteredOrders);
-        break;
-      }
-
-      case 'Ej skickade': {
-        console.log('inside ej sckiakde', filterOrderStatus);
-        filteredOrders = orders?.filter(order => !order.shipped) || [];
-        console.log('inside EJ skickade filtered list', filteredOrders);
-
-        break;
-      }
-
-      default:
-        filteredOrders = orders || [];
-        break;
-    }
-
-    // const notShipped = orders?.filter(order => !order.shipped);
-    // if (notShipped) setOrders(notShipped);
-  };
+  const filteredOrders: IConfirmedOrder[] = filterOrders();
 
   return (
     <>
@@ -104,7 +78,7 @@ const AllOrders = (props: Props) => {
         </Select>
       </FormControl>
       {filteredOrders &&
-        filteredOrders.map(order => (
+        filteredOrders.map((order) => (
           <OrderAccordion
             key={order._id}
             order={order}
