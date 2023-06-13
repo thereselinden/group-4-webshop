@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useProductContext } from '../../context/ProductContext';
 import ProductList from '../../components/ProductList/ProductList';
 import { ICategory } from '../../interfaces/interfaces';
+import Typography from '@mui/material/Typography';
 
 type Props = {};
 
@@ -29,8 +30,10 @@ const Category = (props: Props) => {
     <>
       {catId && filteredProducts ? (
         <>
-          <h1>{categoryDetails?.title}</h1>
-          <p>{categoryDetails?.description}</p>
+          <Typography variant="h4" component="h1">
+            {categoryDetails?.title}
+          </Typography>
+          <Typography>{categoryDetails?.description}</Typography>
           <ProductList products={filteredProducts} />
         </>
       ) : (
