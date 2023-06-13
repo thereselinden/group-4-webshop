@@ -72,7 +72,7 @@ const AllOrders = (props: Props) => {
       }
 
       default:
-        setFilteredOrders = orders || [];
+        filteredOrders = orders || [];
         break;
     }
 
