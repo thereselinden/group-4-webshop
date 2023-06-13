@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
-import { Controller } from 'react-hook-form';
 
 import { Button, FormControl } from '@mui/material';
 import Typography from '@mui/material/Typography';
@@ -13,7 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import FormHelperText from '@mui/material/FormHelperText';
 
-import { ICategory, IProduct } from '../../interfaces/interfaces';
+import { IProduct } from '../../interfaces/interfaces';
 import FormInputField from './FormInputField/FormInputField';
 import { useUserContext } from '../../context/UserContext';
 import { productSchema } from './formValidate';
@@ -80,9 +79,7 @@ const ProductForm = ({ productId }: Props) => {
   };
 
   const onSubmitAddProduct = async (data: IProduct) => {
-    console.log('Lägg till produkt');
     if (selectedCategories.length < 1) {
-      console.log('kategor saknas');
       setCategoryError(true);
       return;
     }
@@ -126,50 +123,42 @@ const ProductForm = ({ productId }: Props) => {
           minRows={3}
           type="textarea"
         />
-        {/* <FormControl error> */}
-        <InputLabel id="demo-multiple-checkbox-label" color="textColor">
-          Kategorier
-        </InputLabel>
-
-        <Select
-          labelId="demo-multiple-checkbox-label"
-          id="demo-multiple-checkbox"
-          multiple
-          required
-          error={categoryError ? true : false}
-          value={selectedCategories}
-          onChange={handleChange}
-          input={
-            <OutlinedInput
-              label="Kategorier"
-              sx={{ color: 'black' }}
-              color="secondary"
-            />
-          }
-          renderValue={selected => selected.join(', ')}
-          sx={{ width: '100%' }}
-          //MenuProps={MenuProps}
-        >
-          {categories?.map(category => (
-            <MenuItem key={category._id} value={category.title}>
-              <Checkbox
-                checked={
-                  selectedCategories.findIndex(cat => cat === category.title) >
-                  -1
-                }
-                color="accent"
-              />
-              <ListItemText primary={category.title} />
-            </MenuItem>
-          ))}
-        </Select>
-        {categoryError && (
-          <FormHelperText sx={{ color: 'rgba(224,17,17,0.8)' }}>
-            Du måste välja minst 1 kategori
-          </FormHelperText>
-        )}
-
-        {/* </FormControl> */}
+        <FormControl sx={{ width: '100%' }}>
+          <InputLabel id="category-checkbox-label" color="textColor">
+            Kategorier
+          </InputLabel>
+          <Select
+            labelId="category-checkbox-label"
+            id="category-checkbox"
+            multiple
+            required
+            error={categoryError ? true : false}
+            value={selectedCategories}
+            onChange={handleChange}
+            input={<OutlinedInput label="Kategorier" color="secondary" />}
+            renderValue={selected => selected.join(', ')}
+            sx={{ width: '100%' }}
+          >
+            {categories?.map(category => (
+              <MenuItem key={category._id} value={category.title}>
+                <Checkbox
+                  checked={
+                    selectedCategories.findIndex(
+                      cat => cat === category.title
+                    ) > -1
+                  }
+                  color="accent"
+                />
+                <ListItemText primary={category.title} />
+              </MenuItem>
+            ))}
+          </Select>
+          {categoryError && (
+            <FormHelperText sx={{ color: 'rgba(224,17,17,0.8)' }}>
+              Du måste välja minst 1 kategori
+            </FormHelperText>
+          )}
+        </FormControl>
         <FormInputField
           name="image"
           control={control}
