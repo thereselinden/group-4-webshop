@@ -45,6 +45,15 @@ const AllProducts = (props: Props) => {
     handleClose();
   };
 
+  const buttonWrapper = {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 1,
+    '@media (min-width: 900px)': {
+      flexDirection: 'row',
+    },
+  };
+
   return (
     <Box
       sx={{
@@ -80,8 +89,9 @@ const AllProducts = (props: Props) => {
                 {product.description}
               </Typography>
             </CardContent>
-            <CardActions>
+            <CardActions sx={buttonWrapper}>
               <Button
+                fullWidth
                 size="small"
                 variant="contained"
                 color="accent"
@@ -90,10 +100,12 @@ const AllProducts = (props: Props) => {
                 Uppdatera
               </Button>
               <Button
+                fullWidth
                 size="small"
                 variant="contained"
                 color="warning"
                 onClick={() => handleClickOpen(product._id)}
+                style={{ marginLeft: 0 }}
               >
                 Ta bort
               </Button>
