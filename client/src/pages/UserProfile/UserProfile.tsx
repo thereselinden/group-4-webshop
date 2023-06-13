@@ -27,6 +27,7 @@ const UserProfile = () => {
   return (
     <>
       <Box
+        component="section"
         sx={{
           display: 'grid',
           gridTemplateColumns: { sm: '250px auto' },
@@ -34,12 +35,16 @@ const UserProfile = () => {
           gap: 2,
         }}
       >
-        <Paper variant="outlined" sx={{ height: 'fit-content' }}>
+        <Paper
+          variant="outlined"
+          sx={{ height: 'fit-content' }}
+          component="nav"
+        >
           <List>
             <NavLink to="/profile/overview">
               <Typography
                 variant="h5"
-                component="h1"
+                component="h2"
                 sx={{ textAlign: 'center', mb: 2 }}
               >
                 Mina sidor
