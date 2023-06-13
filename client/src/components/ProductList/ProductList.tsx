@@ -13,26 +13,8 @@ type Props = {
 };
 
 const ProductList = ({ products }: Props) => {
-  // const { products, isLoading } = useProductContext();
-  // const [searchParams] = useSearchParams();
-
-  // const catId = searchParams.get('category');
-  // console.log('catid:', catId);
-
-  // let filteredProducts = products;
-
-  // if (catId && products) {
-  //   filteredProducts = products.filter(product =>
-  //     product?.categories?.some(category => category._id === catId)
-  //   );
-  // }
-
-  // console.log('filtered:', filteredProducts);
-
   return (
     <>
-      {/* {errorMessage && <p>something went wrooooong</p>} */}
-      {/*       {isLoading && <BackDropLoader loading={isLoading} />} */}
       {products && (
         <Grid container sx={{ pt: 3 }} spacing={1}>
           {products.map((product: IProduct) => (
