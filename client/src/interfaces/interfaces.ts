@@ -27,6 +27,7 @@ export interface IProductContext {
   productModal: boolean;
   setProductModal: (arg0: boolean) => void;
   getProduct: (arg0: string) => IProduct | void;
+  getCategoryContext: (arg0: string) => ICategory | void;
   deleteProduct: (arg0: string) => void;
   updateProduct: (arg0: IProduct) => void;
   addProduct: (arg0: IProduct) => void;
