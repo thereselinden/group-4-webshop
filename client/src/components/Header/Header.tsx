@@ -68,7 +68,14 @@ const Header = (props: Props) => {
     <Box sx={{ display: 'flex' }} component="header">
       <CssBaseline />
       <AppBar component="nav">
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
+        <Toolbar
+          sx={{
+            justifyContent: 'space-between',
+            width: '100%',
+            maxWidth: '1200px',
+            margin: 'auto',
+          }}
+        >
           <IconButton
             color="inherit"
             aria-label="open drawer"
