@@ -21,8 +21,8 @@ const ProductCard = ({ product }: Props) => {
     addToCart(product, 1);
   };
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <Link to={`/${product._id}`}>
+    <Link to={`/${product._id}`}>
+      <Card sx={{ height: '100%' }}>
         <CardMedia
           component={'img'}
           sx={{ height: 240 }}
@@ -51,8 +51,8 @@ const ProductCard = ({ product }: Props) => {
             />
           </Box>
         </Box>
-      </Link>
-    </Card>
+      </Card>
+    </Link>
   );
 };
 
