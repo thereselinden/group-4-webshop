@@ -14,12 +14,13 @@ const MainContent = () => {
     <Box
       component="main"
       sx={{
-        px: { sm: 3 },
+        px: { xs: 3 },
         py: 3,
         maxWidth: 1200,
         margin: 'auto',
         display: 'flex',
         flexDirection: 'column',
+        minHeight: '80vh',
       }}
     >
       <Toolbar />
