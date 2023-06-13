@@ -3,11 +3,13 @@ import { Route, Routes } from 'react-router';
 import { Box } from '@mui/system';
 import { Toolbar } from '@mui/material';
 
-import ProductList from '../../pages/ProductList/ProductList';
+import ProductList from '../ProductList/ProductList';
 import ProductDetails from '../../pages/ProductDetails/ProductDetails';
 import UserProfile from '../../pages/UserProfile/UserProfile';
 import ProtectedRoute from '../../utils/ProtectedRoute';
 import Checkout from '../../pages/Checkout/Checkout';
+import Category from '../../pages/Category/Category';
+import Home from '../../pages/Home/Home';
 
 const MainContent = () => {
   return (
@@ -25,7 +27,8 @@ const MainContent = () => {
     >
       <Toolbar />
       <Routes>
-        <Route path="/" element={<ProductList />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/category" element={<Category />} />
         <Route path="/:id" element={<ProductDetails />} />
         <Route
           path="/profile/*"
