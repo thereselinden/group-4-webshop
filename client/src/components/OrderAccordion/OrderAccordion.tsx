@@ -16,11 +16,9 @@ import {
   calcOrderTotalProducts,
   formatOrderDay,
 } from '../../utils/helper';
-import BackDropLoader from '../BackDropLoader/BackDropLoader';
 
 type Props = {
   order: IConfirmedOrder;
-
   handleChange: (
     arg0: string
   ) =>
@@ -38,7 +36,6 @@ const OrderAccordion = ({
   expanded,
   isAdmin = false,
 }: Props) => {
-  console.log('order', order);
   return (
     <Accordion
       expanded={expanded === `panel${order._id}`}
