@@ -113,7 +113,7 @@ const OrderAccordion = ({
           {/* </Box> */}
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'row-reverse' }}>
-          {isAdmin && (
+          {isAdmin && handleOrderShipped && (
             <>
               <Stack direction="row" spacing={1}>
                 {!order?.shipped ? (
