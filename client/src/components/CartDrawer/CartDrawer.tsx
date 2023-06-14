@@ -39,11 +39,6 @@ const CartDrawer = ({ drawerOpen, setDrawerOpen }: Props) => {
     setDrawerOpen(false);
   };
 
-  const handleShopping = () => {
-    navigate('/');
-    setDrawerOpen(false);
-  };
-
   return (
     <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer()}>
       <Box
