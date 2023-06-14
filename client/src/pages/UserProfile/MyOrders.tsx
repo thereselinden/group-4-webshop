@@ -10,7 +10,7 @@ import { IConfirmedOrder } from '../../interfaces/interfaces';
 const MyOrders = () => {
   const { user } = useUserContext();
   const [expanded, setExpanded] = useState<string | false>(false);
-  let [[orders], [loadingOrders]] = useFetch<IConfirmedOrder[]>('/api/orders');
+  let [[orders]] = useFetch<IConfirmedOrder[]>('/api/orders');
 
   if (orders && user?.isAdmin) {
     orders = orders?.filter(order => order.customer._id === user?._id);

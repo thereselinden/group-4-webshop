@@ -5,7 +5,7 @@ import { ICategory } from '../../interfaces/interfaces';
 import Typography from '@mui/material/Typography';
 
 const Category = () => {
-  const { products, isLoading, getCategoryContext } = useProductContext();
+  const { products, getCategoryContext } = useProductContext();
   const [searchParams] = useSearchParams();
 
   const catId = searchParams.get('category');

@@ -16,7 +16,7 @@ import BackDropLoader from '../../components/BackDropLoader/BackDropLoader';
 const AllOrders = () => {
   const { user } = useUserContext();
 
-  const [[orders, setOrders], [loadingOrders, setLoadingOrders]] =
+  const [[orders, setOrders], [loadingOrders]] =
     useFetch<IConfirmedOrder[]>('/api/orders');
   const [expanded, setExpanded] = useState<string | false>(false);
   const [filterOrderStatus, setFilterOrderStatus] =

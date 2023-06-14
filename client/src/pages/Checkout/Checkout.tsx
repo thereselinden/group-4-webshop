@@ -39,9 +39,7 @@ const CheckoutContainer = styled(Box)({
 });
 
 const Checkout = () => {
-  const [[shippingMethods], [isLoading], [errorMessage]] = useFetch<
-    IShipping[]
-  >('/api/shippingmethod');
+  const [[shippingMethods]] = useFetch<IShipping[]>('/api/shippingmethod');
 
   shippingMethods?.sort((a, b) => {
     return a.price > b.price ? 1 : -1;
