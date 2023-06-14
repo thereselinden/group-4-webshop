@@ -164,6 +164,7 @@ const ProductForm = ({ productId }: Props) => {
           control={control}
           label="Bild"
           type="text"
+          placeholder="https://i.ibb.co/m50YyHL/cap-2-768x768.jpg"
         />
         <FormInputField
           name="price"

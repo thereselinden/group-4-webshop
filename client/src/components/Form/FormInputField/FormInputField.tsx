@@ -11,6 +11,7 @@ type Props = {
   disabled?: boolean;
   multiline?: boolean;
   minRows?: number;
+  placeholder?: string;
 };
 
 const FormInputField = ({
@@ -21,6 +22,7 @@ const FormInputField = ({
   disabled,
   multiline,
   minRows,
+  placeholder,
 }: Props) => {
   return (
     <Controller
@@ -39,6 +41,7 @@ const FormInputField = ({
           disabled={disabled}
           multiline={multiline}
           minRows={minRows}
+          placeholder={placeholder}
           variant="outlined"
           color="textColor"
         />
