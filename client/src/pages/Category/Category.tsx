@@ -4,9 +4,7 @@ import ProductList from '../../components/ProductList/ProductList';
 import { ICategory } from '../../interfaces/interfaces';
 import Typography from '@mui/material/Typography';
 
-type Props = {};
-
-const Category = (props: Props) => {
+const Category = () => {
   const { products, isLoading, getCategoryContext } = useProductContext();
   const [searchParams] = useSearchParams();
 
