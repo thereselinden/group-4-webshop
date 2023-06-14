@@ -43,8 +43,8 @@ click provided localhost link in terminal
 
 ## Group members:
 
-[Therese Lindén](https://github.com/thereselinden)
-[Johan Brynielsson](https://github.com/johanbry)
-[Nikela Ståhl](https://github.com/ilonik)
-[Signe Hellquist](https://github.com/SigneAnnaMaria)
-[Ammar Hasan](https://github.com/ammarhasan011)
+- [Therese Lindén](https://github.com/thereselinden)
+- [Johan Brynielsson](https://github.com/johanbry)
+- [Nikela Ståhl](https://github.com/ilonik)
+- [Signe Hellquist](https://github.com/SigneAnnaMaria)
+- [Ammar Hasan](https://github.com/ammarhasan011)
