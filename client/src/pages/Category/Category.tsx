@@ -34,7 +34,7 @@ const Category = (props: Props) => {
           <ProductList products={filteredProducts} />
         </>
       ) : (
-        <p>ingen kategori vald</p>
+        <Typography>Ingen kategori vald</Typography>
       )}
     </>
   );
