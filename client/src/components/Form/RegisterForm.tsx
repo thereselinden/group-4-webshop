@@ -53,7 +53,7 @@ const RegisterForm = ({ toggleForm }: Props) => {
           gap: 15,
         }}
       >
-        <HowToRegIcon color="accent" fontSize="large" />
+        <HowToRegIcon fontSize="large" />
 
         <Typography variant="h4">Registrera konto</Typography>
         <FormInputField

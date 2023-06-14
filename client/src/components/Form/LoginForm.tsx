@@ -46,7 +46,7 @@ const LoginForm = ({ toggleForm }: Props) => {
         }}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <LockIcon color="accent" fontSize="large" />
+        <LockIcon fontSize="large" />
         <Typography variant="h4">Logga in</Typography>
         <FormInputField
           name="email"
