@@ -17,7 +17,7 @@ const Search = () => {
       navigate(`/${value?._id}`);
       setValue(null);
     }
-  }, [value]);
+  }, [value, navigate]);
 
   let filteredProducts: IProduct[] = [];
   if (inputValue)
