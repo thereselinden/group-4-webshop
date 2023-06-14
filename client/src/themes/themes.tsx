@@ -55,6 +55,12 @@ declare module '@mui/material/TextField' {
   }
 }
 
+declare module '@mui/material/InputBase' {
+  interface InputBasePropsColorOverrides {
+    textColor: true;
+  }
+}
+
 declare module '@mui/material/FormLabel' {
   interface FormLabelPropsColorOverrides {
     textColor: true;
