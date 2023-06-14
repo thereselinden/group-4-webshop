@@ -26,8 +26,6 @@ import DeliveryAddressForm from '../../components/Form/DeliveryAddressForm';
 import ConfirmationModal from '../../components/ConfirmationModal/ConfirmationModal';
 import BackDropLoader from '../../components/BackDropLoader/BackDropLoader';
 
-type Props = {};
-
 const CheckoutContainer = styled(Box)({
   display: 'flex',
   flexDirection: 'column-reverse',
@@ -40,12 +38,10 @@ const CheckoutContainer = styled(Box)({
   },
 });
 
-const Checkout = (props: Props) => {
-  const [
-    [shippingMethods, setShippingMethods],
-    [isLoading, setIsLoading],
-    [errorMessage, setErrorMessage],
-  ] = useFetch<IShipping[]>('/api/shippingmethod');
+const Checkout = () => {
+  const [[shippingMethods], [isLoading], [errorMessage]] = useFetch<
+    IShipping[]
+  >('/api/shippingmethod');
 
   shippingMethods?.sort((a, b) => {
     return a.price > b.price ? 1 : -1;
@@ -57,8 +53,6 @@ const Checkout = (props: Props) => {
   const [order, setOrder] = useState<IConfirmedOrder | null>(null);
   const [loading, setLoading] = useState(false);
   const [confirmationModal, setConfirmationModal] = useState(false);
-
-  console.log('order state checkout ', order);
 
   const { calcProductTotal, numOfProducts, cartItems, clearCart } =
     useCartContext();
@@ -123,17 +117,34 @@ const Checkout = (props: Props) => {
 
   const handleConfirmationCloseModal = () => {
     setConfirmationModal(false);
-    navigate('/profile');
+    navigate('/profile/overview');
+  };
+
+  const handleBackToShop = () => {
+    navigate('/');
   };
 
   return (
     <>
       <BackDropLoader loading={loading} />
       {numOfProducts() === 0 ? (
-        <>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
           <Typography>Din varukorg är tom</Typography>
-          <Button variant="contained">Tillbaka till shoppen</Button>
-        </>
+          <Button
+            variant="contained"
+            color="accent"
+            onClick={() => handleBackToShop()}
+            sx={{ mt: 2, width: '100%', maxWidth: '300px' }}
+          >
+            Tillbaka till shoppen
+          </Button>
+        </Box>
       ) : (
         <CheckoutContainer>
           <Box>

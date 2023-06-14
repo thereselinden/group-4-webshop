@@ -4,9 +4,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import EmailIcon from '@mui/icons-material/Email';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
-type Props = {};
-
-const Social = (props: Props) => {
+const Social = () => {
   return (
     <Box sx={{ textAlign: 'center' }}>
       <Typography variant="h6">Sociala medier</Typography>

@@ -1,15 +1,13 @@
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import LoginIcon from '@mui/icons-material/Login';
 import IconButton from '@mui/material/IconButton';
-import { Link } from 'react-router-dom';
-import UserModal from '../UserModal/UserModal';
-import { useUserContext } from '../../context/UserContext';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 
-type Props = {};
+import UserModal from '../UserModal/UserModal';
+import { useUserContext } from '../../context/UserContext';
 
-const ProfileButton = (props: Props) => {
+const ProfileButton = () => {
   const { user, setUserModal } = useUserContext();
 
   return (

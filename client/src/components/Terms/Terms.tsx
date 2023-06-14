@@ -1,7 +1,6 @@
 import { Box, Typography, Link } from '@mui/material';
-type Props = {};
 
-const Terms = (props: Props) => {
+const Terms = () => {
   return (
     <Box sx={{ textAlign: 'center' }}>
       <Typography variant="h6">Information</Typography>

@@ -1,23 +1,26 @@
-const { OrderModel } = require("./order.model");
-const { ProductModel } = require("../product/product.model");
+const { OrderModel } = require('./order.model');
+const { ProductModel } = require('../product/product.model');
 
 const getAllOrders = async (req, res) => {
   const query = req.session.isAdmin ? {} : { customer: req.session._id };
-  const orders = await OrderModel.find(query).populate("customer");
+  const orders = await OrderModel.find(query)
+    .populate('customer')
+    .populate('orderItems.product')
+    .populate('shippingMethod');
   res.status(200).json(orders);
 };
 const getOrder = async (req, res) => {
   const order = await OrderModel.findById(req.params.id)
-    .populate("customer")
-    .populate("orderItems.product")
-    .populate("shippingMethod");
+    .populate('customer')
+    .populate('orderItems.product')
+    .populate('shippingMethod');
   if (
     !req.session.isAdmin &&
     req.session._id.toString() !== order.customer._id.toString()
   ) {
     return res
       .status(403)
-      .json("You don not have permissions to perform this request");
+      .json('You don not have permissions to perform this request');
   }
   res.status(200).json(order);
 };

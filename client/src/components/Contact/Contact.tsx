@@ -1,9 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 
-type Props = {};
-
-const Contact = (props: Props) => {
+const Contact = () => {
   return (
     <Box sx={{ textAlign: 'center' }}>
       <Typography variant="h6">Kontakt</Typography>

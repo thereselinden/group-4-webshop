@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import { useParams } from 'react-router';
+
 import Grid from '@mui/system/Unstable_Grid/Grid';
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
-import { useState } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -10,27 +11,18 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Button from '@mui/material/Button';
 
 import { IProduct } from '../../interfaces/interfaces';
-import useFetch from '../../hooks/useFetch';
-import { theme } from '../../themes/themes';
 import { useCartContext } from '../../context/CartContext';
-import { inventories } from '../../utils/inventories';
+import { inventories } from '../../utils/Inventories';
+import { useProductContext } from '../../context/ProductContext';
 
 const ProductDetails = () => {
   const [qty, setQty] = useState('1');
   const { id } = useParams();
   const { addToCart } = useCartContext();
 
-  const [
-    [product, setProduct],
-    [isLoading, setIsLoading],
-    [errorMessage, setErrorMessage],
-  ] = useFetch<IProduct>(`/api/products/${id}`);
-
-  // const {
-  //   data: product,
-  //   isLoading,
-  //   errorMessage,
-  // } = useFetch<IProduct>(`/api/products/${id}`);
+  const { getProduct } = useProductContext();
+  let product: IProduct | void;
+  if (id) product = getProduct(id);
 
   const handleChange = (event: SelectChangeEvent) => {
     setQty(event.target.value as string);
@@ -42,8 +34,8 @@ const ProductDetails = () => {
 
   return (
     <>
-      {errorMessage && <p>something went wrooooong</p>}
-      {isLoading && <p>Laddar........</p>}
+      {/* {errorMessage && <p>something went wrooooong</p>}
+      {isLoading && <p>Laddar........</p>} */}
       {product && (
         <Box sx={{ flexGrow: 1 }}>
           <Grid container sx={{ pt: 3 }} spacing={1} columnSpacing={{ sm: 10 }}>
@@ -96,6 +88,7 @@ const ProductDetails = () => {
                   fullWidth
                   color="accent"
                   onClick={handleAddToCart}
+                  disabled={product.inStock < 1}
                 >
                   Lägg i Shoppingbag
                 </Button>

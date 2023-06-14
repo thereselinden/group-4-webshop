@@ -1,10 +1,11 @@
 import { useForm } from 'react-hook-form';
-import FormInputField from './FormInputField/FormInputField';
-import { useUserContext } from '../../context/UserContext';
 import { joiResolver } from '@hookform/resolvers/joi';
 
 import { Button } from '@mui/material';
 import Typography from '@mui/material/Typography';
+
+import FormInputField from './FormInputField/FormInputField';
+import { useUserContext } from '../../context/UserContext';
 import { deliveryAddressSchema } from './formValidate';
 import { IDeliveryAddress } from '../../interfaces/interfaces';
 
@@ -13,7 +14,7 @@ type Props = {
 };
 
 const DeliveryAddressForm = ({ handleOrderSubmit }: Props) => {
-  const { errorMessage, isLoading, user } = useUserContext();
+  const { errorMessage } = useUserContext();
 
   const defaultValue = {
     street: '',
@@ -28,9 +29,7 @@ const DeliveryAddressForm = ({ handleOrderSubmit }: Props) => {
   });
 
   const onSubmit = async (data: IDeliveryAddress) => {
-    console.log(data);
     handleOrderSubmit(data);
-    // göra fetch ('/api/order/)
   };
 
   return (

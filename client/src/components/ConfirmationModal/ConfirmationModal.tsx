@@ -1,19 +1,16 @@
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-
 import Modal from '@mui/material/Modal';
+
 import useFetch from '../../hooks/useFetch';
 import { IConfirmedOrder } from '../../interfaces/interfaces';
 import {
   formatOrderDate,
   calcOrderItemTotal,
   calcOrderProductTotal,
-  calcOrderTotal,
 } from '../../utils/helper';
 
 const style = {

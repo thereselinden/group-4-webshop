@@ -1,18 +1,17 @@
-import { useNavigate } from "react-router-dom";
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
+import { useNavigate } from 'react-router-dom';
 
-import Divider from "@mui/material/Divider";
-import Typography from "@mui/material/Typography";
-import CloseIcon from "@mui/icons-material/Close";
-import IconButton from "@mui/material/IconButton";
-import CartItemList from "../CartItemList/CartItemList";
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
+import CartItemList from '../CartItemList/CartItemList';
+import Button from '@mui/material/Button';
 
-import Button from "@mui/material/Button";
-
-import { useCartContext } from "../../context/CartContext";
+import { useCartContext } from '../../context/CartContext';
 
 type Props = {
   drawerOpen: boolean;
@@ -25,9 +24,9 @@ const CartDrawer = ({ drawerOpen, setDrawerOpen }: Props) => {
   const toggleDrawer =
     () => (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
-        event.type === "keydown" &&
-        ((event as React.KeyboardEvent).key === "Tab" ||
-          (event as React.KeyboardEvent).key === "Shift")
+        event.type === 'keydown' &&
+        ((event as React.KeyboardEvent).key === 'Tab' ||
+          (event as React.KeyboardEvent).key === 'Shift')
       ) {
         return;
       }
@@ -36,17 +35,13 @@ const CartDrawer = ({ drawerOpen, setDrawerOpen }: Props) => {
     };
 
   const handleCheckout = () => {
-    navigate("/checkout");
+    navigate('/checkout');
     setDrawerOpen(false);
-    //toggleDrawer();
-    // CartDrawer
   };
 
   const handleShopping = () => {
-    navigate("/");
+    navigate('/');
     setDrawerOpen(false);
-    //toggleDrawer();
-    // CartDrawer
   };
 
   return (
@@ -58,9 +53,9 @@ const CartDrawer = ({ drawerOpen, setDrawerOpen }: Props) => {
       >
         <List
           sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
           }}
         >
           <Typography variant="h6">Din varukorg</Typography>
@@ -78,7 +73,7 @@ const CartDrawer = ({ drawerOpen, setDrawerOpen }: Props) => {
                 <CartItemList />
                 <List>
                   <ListItem
-                    sx={{ display: "flex", justifyContent: "space-between" }}
+                    sx={{ display: 'flex', justifyContent: 'space-between' }}
                   >
                     <Typography variant="h6">Summa</Typography>
                     <Typography variant="h6">
@@ -98,7 +93,7 @@ const CartDrawer = ({ drawerOpen, setDrawerOpen }: Props) => {
           fullWidth
           variant="contained"
           style={{
-            marginBottom: "1rem",
+            marginBottom: '1rem',
           }}
           color="accent"
         >

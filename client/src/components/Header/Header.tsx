@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -13,25 +14,20 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+
 import NavLinks from '../NavLinks/NavLinks';
-import { Link } from 'react-router-dom';
 import Cart from '../Cart/Cart';
 import ProfileButton from '../ProfileButton/ProfileButton';
-
-type Props = {};
+import { useProductContext } from '../../context/ProductContext';
+import Search from '../Search/Search';
 
 const drawerWidth = 240;
-const navItems = [
-  { name: 'T-shirts', to: '?category=t-shirts' },
-  { name: 'Tröjor', to: '?category=trojor' },
-  { name: 'Accessoarer', to: '?category=accessoarer' },
-  { name: 'Kontakt', to: 'kontakt' },
-];
 
-const Header = (props: Props) => {
-  const { window } = props;
+const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { categories } = useProductContext();
+
+  const navItems = categories;
 
   const handleDrawerToggle = () => {
     setMobileOpen(prevState => !prevState);
@@ -44,52 +40,61 @@ const Header = (props: Props) => {
       </Typography>
       <Divider />
       <List>
-        {navItems.map(item => (
-          <ListItem key={item.name} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item.name} color="textColor" />
-            </ListItemButton>
-          </ListItem>
+        {navItems?.map(item => (
+          <NavLink to={`/category/?category=${item._id}`} key={item.title}>
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textAlign: 'center' }}>
+                <ListItemText primary={item.title} color="textColor" />
+              </ListItemButton>
+            </ListItem>
+          </NavLink>
         ))}
       </List>
     </Box>
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
-
   return (
     <Box sx={{ display: 'flex' }} component="header">
       <CssBaseline />
       <AppBar component="nav">
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'block' } }}
-          >
-            <Link to="/">Webbshop</Link>
-          </Typography>
-          <NavLinks navItems={navItems} />
+        <Toolbar
+          sx={{
+            justifyContent: 'space-between',
+            width: '100%',
+            maxWidth: '1200px',
+            margin: 'auto',
+          }}
+        >
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { md: 'none' } }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Box sx={{ display: 'flex' }}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{ flexGrow: 1, display: { xs: 'block' } }}
+              >
+                <Link to="/">Webbshop</Link>
+              </Typography>
+            </Box>
+            <NavLinks navItems={navItems} />
+          </Box>
           <Box sx={{ display: 'flex' }}>
+            <Search />
             <ProfileButton />
             <Cart />
-            {/* <Search /> */}
           </Box>
         </Toolbar>
       </AppBar>
       <Box component="nav">
         <Drawer
-          container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
@@ -97,7 +102,7 @@ const Header = (props: Props) => {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
+            display: { xs: 'block', md: 'none' },
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,

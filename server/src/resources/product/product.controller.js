@@ -1,7 +1,9 @@
 const { ProductModel } = require('./product.model');
 
 async function getAllProducts(req, res) {
-  const products = await ProductModel.find({ deleted: false });
+  const products = await ProductModel.find({ deleted: false }).populate({
+    path: 'categories',
+  });
   res.status(200).json(products);
 }
 
@@ -38,7 +40,7 @@ async function updateProduct(req, res) {
   const product = await ProductModel.findByIdAndUpdate(
     req.params.id,
     req.body,
-    { new: true },
+    { new: true }
   );
 
   res.status(200).json(product);

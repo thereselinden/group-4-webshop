@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 export const SaveToLs = <T>(key: string, value: T): void => {
   localStorage.setItem(key, JSON.stringify(value));
@@ -11,10 +11,6 @@ export const GetFromLs = <T>(key: string): T | null => {
   }
   return JSON.parse(value);
 };
-
-//useLocalStorage custom hook
-
-import { useEffect, useState } from 'react';
 
 export const useLocalStorage = <T>(
   key: string,

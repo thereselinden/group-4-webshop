@@ -22,3 +22,12 @@ export const deliveryAddressSchema = Joi.object({
   city: Joi.string().strict().required(),
   country: Joi.string().strict().required(),
 });
+
+export const productSchema = Joi.object({
+  title: Joi.string().strict().required(),
+  description: Joi.string().strict().required(),
+  price: Joi.number().required(),
+  image: Joi.string().uri().allow('image/png', 'image/jpeg').required(),
+  inStock: Joi.number().required(),
+  categories: Joi.array().min(1),
+});

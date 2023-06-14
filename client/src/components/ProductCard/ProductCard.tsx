@@ -1,17 +1,14 @@
+import { MouseEvent } from 'react';
+import { Link } from 'react-router-dom';
+
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Box } from '@mui/system';
 
 import { IProduct } from '../../interfaces/interfaces';
 import AddToCartBtn from '../AddToCartBtn/AddToCartBtn';
-import { Box } from '@mui/system';
-import { CardActionArea } from '@mui/material';
-import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/CartContext';
-import { MouseEvent } from 'react';
 
 type Props = { product: IProduct };
 
@@ -23,8 +20,8 @@ const ProductCard = ({ product }: Props) => {
     addToCart(product, 1);
   };
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <Link to={product._id}>
+    <Link to={`/${product._id}`}>
+      <Card sx={{ height: '100%' }}>
         <CardMedia
           component={'img'}
           sx={{ height: 240 }}
@@ -46,11 +43,15 @@ const ProductCard = ({ product }: Props) => {
             <Typography variant="body2" color="text.secondary">
               {product.price} kr
             </Typography>
-            <AddToCartBtn onClick={handleAddToCart} />
+
+            <AddToCartBtn
+              disabled={product.inStock < 1}
+              onClick={handleAddToCart}
+            />
           </Box>
         </Box>
-      </Link>
-    </Card>
+      </Card>
+    </Link>
   );
 };
 

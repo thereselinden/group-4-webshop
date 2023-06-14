@@ -1,4 +1,4 @@
-import { Route, Routes, Link, NavLink } from 'react-router-dom';
+import { Route, Routes, NavLink } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -10,29 +10,53 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import Typography from '@mui/material/Typography';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import StoreIcon from '@mui/icons-material/Store';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 
 import { useUserContext } from '../../context/UserContext';
 import Overview from './OverView';
 import MyOrders from './MyOrders';
+import AllOrders from './AllOrders';
+import AllProducts from './AllProducts';
+import AddProduct from './AddProduct';
 
-type Props = {};
-
-const UserProfile = (props: Props) => {
+const UserProfile = () => {
   const { user, logout } = useUserContext();
 
   return (
     <>
-      <Box sx={{ display: 'grid', gridTemplateColumns: '250px auto', gap: 2 }}>
-        <Paper variant="outlined" sx={{ height: 'fit-content' }}>
+      <Box
+        component="section"
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { md: '250px auto' },
+          padding: { xs: 1, sm: 0 },
+          gap: 2,
+        }}
+      >
+        <Paper
+          variant="outlined"
+          sx={{ height: 'fit-content' }}
+          component="nav"
+        >
           <List>
-            <Typography
-              variant="h5"
-              component="h1"
-              sx={{ textAlign: 'center', mb: 2 }}
+            <NavLink to="/profile/overview">
+              <Typography
+                variant="h5"
+                component="h2"
+                sx={{ textAlign: 'center', mb: 2 }}
+              >
+                Mina sidor
+              </Typography>
+            </NavLink>
+
+            <NavLink
+              to="/profile/my-orders"
+              style={({ isActive }) => ({
+                color: isActive ? '#f39709' : 'inherit',
+              })}
             >
-              Mina sidor
-            </Typography>
-            <NavLink to="profile/my-orders">
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon>
@@ -44,22 +68,53 @@ const UserProfile = (props: Props) => {
             </NavLink>
             {user?.isAdmin && (
               <>
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <ShoppingBasketIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={'Alla ordrar'} />
-                  </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <ShoppingBasketIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={'Alla produkter'} />
-                  </ListItemButton>
-                </ListItem>
+                <NavLink
+                  to="/profile/admin-orders"
+                  style={({ isActive }) => ({
+                    color: isActive ? '#f39709' : 'inherit',
+                  })}
+                >
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <StoreIcon />
+                      </ListItemIcon>
+                      <ListItemText primary={'Alla ordrar'} />
+                    </ListItemButton>
+                  </ListItem>
+                </NavLink>
+
+                <NavLink
+                  to="/profile/admin-products"
+                  style={({ isActive }) => ({
+                    color: isActive ? '#f39709' : 'inherit',
+                  })}
+                >
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <InventoryIcon />
+                      </ListItemIcon>
+                      <ListItemText primary={'Alla produkter'} />
+                    </ListItemButton>
+                  </ListItem>
+                </NavLink>
+
+                <NavLink
+                  to="/profile/admin-all-products"
+                  style={({ isActive }) => ({
+                    color: isActive ? '#f39709' : 'inherit',
+                  })}
+                >
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <AddBusinessIcon />
+                      </ListItemIcon>
+                      <ListItemText primary={'Lägg till produkt'} />
+                    </ListItemButton>
+                  </ListItem>
+                </NavLink>
               </>
             )}
 
@@ -76,14 +131,12 @@ const UserProfile = (props: Props) => {
 
         <Box component="div" sx={{ flexGrow: 1 }}>
           <Routes>
-            <Route path="/overview" element={<Overview />} />
-            <Route path="profile/my-orders" element={<MyOrders />} />
-            <Route path="/profile/admin-orders" element={<Overview />} />
-            <Route path="/profile/admin-products" element={<Overview />} />
+            <Route path="overview" element={<Overview />} />
+            <Route path="my-orders" element={<MyOrders />} />
+            <Route path="admin-orders" element={<AllOrders />} />
+            <Route path="admin-products" element={<AllProducts />} />
+            <Route path="admin-all-products" element={<AddProduct />} />
           </Routes>
-          {/* <Typography variant="h4" component="h1">
-            Hej {user?.firstName}
-          </Typography> */}
         </Box>
       </Box>
     </>

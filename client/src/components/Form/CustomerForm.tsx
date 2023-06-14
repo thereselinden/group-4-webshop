@@ -1,10 +1,9 @@
 import { useForm } from 'react-hook-form';
+
 import FormInputField from './FormInputField/FormInputField';
 import { useUserContext } from '../../context/UserContext';
 
-type Props = {};
-
-const CustomerForm = (props: Props) => {
+const CustomerForm = () => {
   const { user } = useUserContext();
 
   const defaultValue = {

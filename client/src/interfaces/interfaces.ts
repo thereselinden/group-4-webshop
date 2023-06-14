@@ -1,17 +1,31 @@
-export interface NavItem {
-  name: string;
-  to: string;
+export interface ICategory {
+  _id: string;
+  title: string;
+  description: string;
 }
 
 export interface IProduct {
-  categories: string[];
+  categories?: ICategory[];
   deleted: boolean;
   description: string;
   image: string;
   inStock: number;
   price: number;
   title: string;
-  _id: string;
+  _id?: string | null;
+}
+
+export interface IProductContext {
+  products: IProduct[] | null;
+  categories: ICategory[] | null;
+  isLoading: boolean;
+  productModal: boolean;
+  setProductModal: (arg0: boolean) => void;
+  getProduct: (arg0: string) => IProduct | void;
+  getCategoryContext: (arg0: string) => ICategory | void;
+  deleteProduct: (arg0: string) => void;
+  updateProduct: (arg0: IProduct) => void;
+  addProduct: (arg0: IProduct) => void;
 }
 
 export interface ICartItem {
@@ -40,7 +54,7 @@ export interface IRegisterForm {
 }
 
 export interface IUser {
-  id: string;
+  _id: string;
   firstName: string;
   lastName: string;
   email: string;
