@@ -11,6 +11,7 @@ import { ILoginForm } from '../../interfaces/interfaces';
 import FormInputField from './FormInputField/FormInputField';
 import { useUserContext } from '../../context/UserContext';
 import { loginSchema } from './formValidate';
+import { theme } from '../../themes/themes';
 
 type Props = {
   toggleForm: () => void;
@@ -46,7 +47,7 @@ const LoginForm = ({ toggleForm }: Props) => {
         }}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <LockIcon fontSize="large" />
+        <LockIcon fontSize="large" sx={{ color: theme.color.yellow }} />
         <Typography variant="h4">Logga in</Typography>
         <FormInputField
           name="email"

@@ -12,6 +12,7 @@ import { IRegisterForm } from '../../interfaces/interfaces';
 import FormInputField from './FormInputField/FormInputField';
 import { registerSchema } from './formValidate';
 import { useUserContext } from '../../context/UserContext';
+import { theme } from '../../themes/themes';
 
 type Props = {
   toggleForm: () => void;
@@ -53,7 +54,7 @@ const RegisterForm = ({ toggleForm }: Props) => {
           gap: 15,
         }}
       >
-        <HowToRegIcon fontSize="large" />
+        <HowToRegIcon fontSize="large" sx={{ color: theme.color.yellow }} />
 
         <Typography variant="h4">Registrera konto</Typography>
         <FormInputField
