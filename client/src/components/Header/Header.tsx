@@ -19,19 +19,11 @@ import NavLinks from '../NavLinks/NavLinks';
 import Cart from '../Cart/Cart';
 import ProfileButton from '../ProfileButton/ProfileButton';
 import { useProductContext } from '../../context/ProductContext';
-
-type Props = {};
+import Search from '../Search/Search';
 
 const drawerWidth = 240;
-// const navItems = [
-//   { name: 'T-shirts', to: 'products?category=t-shirts' },
-//   { name: 'Tröjor', to: '?category=trojor' },
-//   { name: 'Accessoarer', to: '?category=accessoarer' },
-//   { name: 'Kontakt', to: 'kontakt' },
-// ];
 
-const Header = (props: Props) => {
-  const { window } = props;
+const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { categories } = useProductContext();
 
@@ -61,9 +53,6 @@ const Header = (props: Props) => {
     </Box>
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
-
   return (
     <Box sx={{ display: 'flex' }} component="header">
       <CssBaseline />
@@ -76,35 +65,36 @@ const Header = (props: Props) => {
             margin: 'auto',
           }}
         >
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Box sx={{ display: 'flex' }}>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: 'block' } }}
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { md: 'none' } }}
             >
-              <Link to="/">Webbshop</Link>
-            </Typography>
+              <MenuIcon />
+            </IconButton>
+            <Box sx={{ display: 'flex' }}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{ flexGrow: 1, display: { xs: 'block' } }}
+              >
+                <Link to="/">Webbshop</Link>
+              </Typography>
+            </Box>
             <NavLinks navItems={navItems} />
           </Box>
           <Box sx={{ display: 'flex' }}>
+            <Search />
             <ProfileButton />
             <Cart />
-            {/* <Search /> */}
           </Box>
         </Toolbar>
       </AppBar>
       <Box component="nav">
         <Drawer
-          container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
@@ -112,7 +102,7 @@ const Header = (props: Props) => {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
+            display: { xs: 'block', md: 'none' },
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,
