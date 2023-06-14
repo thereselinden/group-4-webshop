@@ -11,17 +11,17 @@ import ProductProvider from './context/ProductContext.tsx';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  //<React.StrictMode>
-  <BrowserRouter>
-    <ProductProvider>
-      <UserProvider>
-        <CartProvider>
-          <ThemeProvider theme={theme}>
-            <App />
-          </ThemeProvider>
-        </CartProvider>
-      </UserProvider>
-    </ProductProvider>
-  </BrowserRouter>
-  //</React.StrictMode>
+  <React.StrictMode>
+    <BrowserRouter>
+      <ProductProvider>
+        <UserProvider>
+          <CartProvider>
+            <ThemeProvider theme={theme}>
+              <App />
+            </ThemeProvider>
+          </CartProvider>
+        </UserProvider>
+      </ProductProvider>
+    </BrowserRouter>
+  </React.StrictMode>
 );
