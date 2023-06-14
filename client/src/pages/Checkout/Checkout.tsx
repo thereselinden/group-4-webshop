@@ -117,17 +117,34 @@ const Checkout = () => {
 
   const handleConfirmationCloseModal = () => {
     setConfirmationModal(false);
-    navigate('/profile');
+    navigate('/profile/overview');
+  };
+
+  const handleBackToShop = () => {
+    navigate('/');
   };
 
   return (
     <>
       <BackDropLoader loading={loading} />
       {numOfProducts() === 0 ? (
-        <>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
           <Typography>Din varukorg är tom</Typography>
-          <Button variant="contained">Tillbaka till shoppen</Button>
-        </>
+          <Button
+            variant="contained"
+            color="accent"
+            onClick={() => handleBackToShop()}
+            sx={{ mt: 2, width: '100%', maxWidth: '300px' }}
+          >
+            Tillbaka till shoppen
+          </Button>
+        </Box>
       ) : (
         <CheckoutContainer>
           <Box>
