@@ -1,8 +1,3 @@
-export interface NavItem {
-  name: string;
-  to: string;
-}
-
 export interface ICategory {
   _id: string;
   title: string;
