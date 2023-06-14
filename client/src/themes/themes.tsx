@@ -49,6 +49,12 @@ declare module '@mui/material/Radio' {
   }
 }
 
+declare module '@mui/material/TextField' {
+  interface TextFieldPropsColorOverrides {
+    textColor: true;
+  }
+}
+
 declare module '@mui/material/FormLabel' {
   interface FormLabelPropsColorOverrides {
     textColor: true;
