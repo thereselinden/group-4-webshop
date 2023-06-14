@@ -12,6 +12,20 @@ declare module '@mui/material/styles' {
   }
 }
 
+declare module '@mui/material/styles' {
+  interface Theme {
+    color: {
+      yellow: string;
+    };
+  }
+  // allow configuration using `createTheme`
+  interface ThemeOptions {
+    color?: {
+      yellow?: string;
+    };
+  }
+}
+
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
     textColor: true;
@@ -84,5 +98,8 @@ export const theme = createTheme({
     fontWeightRegular: 400,
     fontWeightMedium: 500,
     fontWeightBold: 600,
+  },
+  color: {
+    yellow: yellow[600],
   },
 });
