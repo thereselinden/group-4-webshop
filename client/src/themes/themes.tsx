@@ -26,6 +26,35 @@ declare module '@mui/material/IconButton' {
   }
 }
 
+declare module '@mui/material/Badge' {
+  interface BadgePropsColorOverrides {
+    accent: true;
+  }
+}
+
+declare module '@mui/material/InputLabel' {
+  interface InputLabelClassesPropsColorOverrides {
+    textColor: true;
+  }
+}
+
+declare module '@mui/material/Checkbox' {
+  interface CheckboxPropsColorOverrides {
+    accent: true;
+  }
+}
+declare module '@mui/material/Radio' {
+  interface RadioPropsColorOverrides {
+    accent: true;
+  }
+}
+
+declare module '@mui/material/FormLabel' {
+  interface FormLabelPropsColorOverrides {
+    textColor: true;
+  }
+}
+
 export const theme = createTheme({
   palette: {
     primary: {
