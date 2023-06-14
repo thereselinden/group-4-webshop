@@ -1,33 +1,33 @@
-import { SyntheticEvent, useEffect, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from 'react';
 
-import Typography from "@mui/material/Typography";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Typography from '@mui/material/Typography';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-import { useUserContext } from "../../context/UserContext";
-import useFetch from "../../hooks/useFetch";
-import fetchData from "../../utils/FetchData";
-import { IConfirmedOrder } from "../../interfaces/interfaces";
-import OrderAccordion from "../../components/OrderAccordion/OrderAccordion";
-import BackDropLoader from "../../components/BackDropLoader/BackDropLoader";
+import { useUserContext } from '../../context/UserContext';
+import useFetch from '../../hooks/useFetch';
+import fetchData from '../../utils/FetchData';
+import { IConfirmedOrder } from '../../interfaces/interfaces';
+import OrderAccordion from '../../components/OrderAccordion/OrderAccordion';
+import BackDropLoader from '../../components/BackDropLoader/BackDropLoader';
 
 const AllOrders = () => {
   const { user } = useUserContext();
 
   const [[orders, setOrders], [loadingOrders, setLoadingOrders]] =
-    useFetch<IConfirmedOrder[]>("/api/orders");
+    useFetch<IConfirmedOrder[]>('/api/orders');
   const [expanded, setExpanded] = useState<string | false>(false);
   const [filterOrderStatus, setFilterOrderStatus] =
-    useState<string>("Alla ordrar");
+    useState<string>('Alla ordrar');
 
   const filterOrders = () => {
     switch (filterOrderStatus) {
-      case "Skickade":
-        return orders?.filter((order) => order.shipped) || [];
-      case "Ej skickade":
-        return orders?.filter((order) => !order.shipped) || [];
+      case 'Skickade':
+        return orders?.filter(order => order.shipped) || [];
+      case 'Ej skickade':
+        return orders?.filter(order => !order.shipped) || [];
       default:
         return orders || [];
     }
@@ -40,9 +40,10 @@ const AllOrders = () => {
 
   const handleOrderShipped = async (id: string) => {
     try {
-      await fetchData<IConfirmedOrder>(`/api/orders/${id}`, "PUT");
+      await fetchData<IConfirmedOrder>(`/api/orders/${id}`, 'PUT');
       const updatedOrders = await fetchData<IConfirmedOrder[]>(`/api/orders/`);
       setOrders(updatedOrders);
+      setExpanded(false);
     } catch (err) {
       console.log(err);
     }
@@ -78,7 +79,7 @@ const AllOrders = () => {
         </Select>
       </FormControl>
       {filteredOrders &&
-        filteredOrders.map((order) => (
+        filteredOrders.map(order => (
           <OrderAccordion
             key={order._id}
             order={order}
