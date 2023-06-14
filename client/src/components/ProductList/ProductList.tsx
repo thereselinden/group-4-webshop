@@ -1,12 +1,7 @@
-import { useSearchParams } from 'react-router-dom';
-
 import Grid from '@mui/material/Grid';
 
-import useFetch from '../../hooks/useFetch';
 import ProductCard from '../ProductCard/ProductCard';
 import { IProduct } from '../../interfaces/interfaces';
-import { useProductContext } from '../../context/ProductContext';
-import BackDropLoader from '../BackDropLoader/BackDropLoader';
 
 type Props = {
   products: IProduct[];

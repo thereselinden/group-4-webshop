@@ -139,8 +139,6 @@ const UserProfile = () => {
           </Routes>
         </Box>
       </Box>
-
-      {/* <ProductModal productId={productId} setProductId={setProductId} /> */}
     </>
   );
 };

@@ -2,10 +2,9 @@ import { NavLink } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
-import { ICategory, NavItem } from '../../interfaces/interfaces';
+import { ICategory } from '../../interfaces/interfaces';
 
 type Props = {
-  //navItems: NavItem[];
   navItems: ICategory[] | null;
 };
 

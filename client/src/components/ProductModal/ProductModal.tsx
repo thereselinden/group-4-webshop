@@ -1,10 +1,7 @@
-import { useState } from 'react';
-
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 
 import ProductForm from '../Form/ProductForm';
-import { IProduct } from '../../interfaces/interfaces';
 import { useProductContext } from '../../context/ProductContext';
 
 type Props = {
@@ -31,21 +28,16 @@ const ProductModal = ({ productId, setProductId }: Props) => {
     setProductId(null);
   };
 
-  console.log('in productModal', productId);
   return (
     <div>
       <Modal
         open={productModal}
-        //onClose={() => setProductModal(false)}
         onClose={handleProductModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <ProductForm
-            //handleProductSubmit={handleProductSubmit}
-            productId={productId}
-          />
+          <ProductForm productId={productId} />
         </Box>
       </Modal>
     </div>

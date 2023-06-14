@@ -29,9 +29,7 @@ const DeliveryAddressForm = ({ handleOrderSubmit }: Props) => {
   });
 
   const onSubmit = async (data: IDeliveryAddress) => {
-    console.log(data);
     handleOrderSubmit(data);
-    // göra fetch ('/api/order/)
   };
 
   return (

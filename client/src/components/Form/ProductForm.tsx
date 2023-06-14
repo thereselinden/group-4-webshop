@@ -29,8 +29,6 @@ const ProductForm = ({ productId }: Props) => {
   let product: IProduct | void;
   if (productId) product = getProduct(productId);
 
-  console.log('inside product form productId', productId);
-
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
     product?.categories?.map(category => category.title) || []
   );
@@ -60,9 +58,7 @@ const ProductForm = ({ productId }: Props) => {
   });
 
   const onSubmitUpdateProduct = async (data: IProduct) => {
-    console.log('Uppdatera produkt');
     if (selectedCategories.length < 1) {
-      console.log('kategor saknas');
       setCategoryError(true);
       return;
     }

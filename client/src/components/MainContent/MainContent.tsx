@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router';
 import { Box } from '@mui/system';
 import { Toolbar } from '@mui/material';
 
-import ProductList from '../ProductList/ProductList';
 import ProductDetails from '../../pages/ProductDetails/ProductDetails';
 import UserProfile from '../../pages/UserProfile/UserProfile';
 import ProtectedRoute from '../../utils/ProtectedRoute';

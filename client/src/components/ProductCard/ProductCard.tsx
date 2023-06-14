@@ -9,7 +9,6 @@ import { Box } from '@mui/system';
 import { IProduct } from '../../interfaces/interfaces';
 import AddToCartBtn from '../AddToCartBtn/AddToCartBtn';
 import { useCartContext } from '../../context/CartContext';
-import { IconButton } from '@mui/material';
 
 type Props = { product: IProduct };
 

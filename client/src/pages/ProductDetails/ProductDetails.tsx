@@ -11,7 +11,6 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Button from '@mui/material/Button';
 
 import { IProduct } from '../../interfaces/interfaces';
-import useFetch from '../../hooks/useFetch';
 import { useCartContext } from '../../context/CartContext';
 import { inventories } from '../../utils/Inventories';
 import { useProductContext } from '../../context/ProductContext';

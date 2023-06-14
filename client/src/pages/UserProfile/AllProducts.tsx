@@ -31,7 +31,6 @@ const AllProducts = (props: Props) => {
   };
 
   const handleUpdateClick = (id: string) => {
-    console.log('uppdatera klickad', id);
     setProductModal(true);
     setProductId(id);
   };
@@ -60,14 +59,12 @@ const AllProducts = (props: Props) => {
       sx={{
         display: 'grid',
         gridTemplateColumns: { sm: 'repeat(3, 1fr)' },
-        // padding: { xs: 1, sm: 0 },
         gap: 2,
       }}
       component="section"
     >
       {products &&
         products?.map(product => (
-          // <div key={product._id}>
           <Card
             sx={{
               xs: { maxWidth: '100%' },
@@ -117,7 +114,6 @@ const AllProducts = (props: Props) => {
               </Button>
             </CardActions>
           </Card>
-          // </div>
         ))}
       <ProductModal productId={productId} setProductId={setProductId} />
       <Dialog

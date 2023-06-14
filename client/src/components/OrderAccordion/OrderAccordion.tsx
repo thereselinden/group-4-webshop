@@ -106,8 +106,6 @@ const OrderAccordion = ({
             Fraktmetod {order.shippingMethod.company} (
             {order.shippingMethod.price} SEK)
           </Typography>
-
-          {/* </Box> */}
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'row-reverse' }}>
           {isAdmin && handleOrderShipped && (
