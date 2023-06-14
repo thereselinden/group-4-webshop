@@ -14,7 +14,7 @@ import {
 } from '../../utils/helper';
 
 const style = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -38,9 +38,7 @@ const ConfirmationModal = ({
   handleConfirmationCloseModal,
   order,
 }: Props) => {
-  const [[confirmedOrder, setConfirmedOrder]] = useFetch<IConfirmedOrder>(
-    `/api/orders/${order}`
-  );
+  const [[confirmedOrder]] = useFetch<IConfirmedOrder>(`/api/orders/${order}`);
 
   let orderProductTotal = 0;
 
