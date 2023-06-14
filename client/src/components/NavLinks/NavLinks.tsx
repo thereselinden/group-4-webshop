@@ -10,7 +10,7 @@ type Props = {
 
 const NavLinks = ({ navItems }: Props) => {
   return (
-    <Box sx={{ display: { xs: 'none', sm: 'block' }, ml: 3 }}>
+    <Box sx={{ display: { xs: 'none', md: 'block' }, ml: 3 }}>
       {navItems?.map(item => (
         <NavLink to={`/category/?category=${item._id}`} key={item.title}>
           <Button key={item.title} color="textColor">
