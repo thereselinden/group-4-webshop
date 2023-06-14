@@ -1,11 +1,11 @@
-import { Control, Controller } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 import { HTMLInputTypeAttribute } from 'react';
 
 import TextField from '@mui/material/TextField';
 
 type Props = {
   name: string;
-  control: Control;
+  control: any;
   label: string;
   type: HTMLInputTypeAttribute | undefined;
   disabled?: boolean;
