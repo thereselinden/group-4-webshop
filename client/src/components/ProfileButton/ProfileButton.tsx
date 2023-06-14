@@ -14,15 +14,19 @@ const ProfileButton = () => {
     <>
       {!user ? (
         <>
-          <IconButton aria-label="login" onClick={() => setUserModal(true)}>
-            <LoginIcon color="textColor" />
+          <IconButton
+            aria-label="login"
+            onClick={() => setUserModal(true)}
+            color="textColor"
+          >
+            <LoginIcon />
           </IconButton>
           <UserModal />
         </>
       ) : (
         <Link to="/profile/overview">
-          <IconButton aria-label="go to profile page">
-            <PermIdentityIcon color="textColor" />
+          <IconButton aria-label="go to profile page" color="textColor">
+            <PermIdentityIcon />
           </IconButton>
         </Link>
       )}
