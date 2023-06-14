@@ -19,7 +19,7 @@ import { productSchema } from './formValidate';
 import { useProductContext } from '../../context/ProductContext';
 
 type Props = {
-  productId?: string | null;
+  productId: string;
 };
 
 const ProductForm = ({ productId }: Props) => {
@@ -85,7 +85,6 @@ const ProductForm = ({ productId }: Props) => {
     const product = {
       ...data,
       categories: selectedCategoriesObject,
-      _id: productId,
     };
     addProduct(product);
   };
