@@ -20,6 +20,7 @@ import Cart from '../Cart/Cart';
 import ProfileButton from '../ProfileButton/ProfileButton';
 import { useProductContext } from '../../context/ProductContext';
 import Search from '../Search/Search';
+import Logo from '../../assets/logo.png';
 
 const drawerWidth = 240;
 
@@ -35,9 +36,7 @@ const Header = () => {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        Webbshop
-      </Typography>
+      <Box component="img" src={Logo} sx={{ my: 2, width: '100px' }} />
       <Divider />
       <List>
         {navItems?.map(item => (
@@ -81,7 +80,17 @@ const Header = () => {
                 component="div"
                 sx={{ flexGrow: 1, display: { xs: 'block' } }}
               >
-                <Link to="/">Webbshop</Link>
+                <Link to="/">
+                  <Box
+                    component="img"
+                    src={Logo}
+                    sx={{
+                      width: '50px',
+                      display: 'flex',
+                      alignItems: 'center',
+                    }}
+                  />
+                </Link>
               </Typography>
             </Box>
             <NavLinks navItems={navItems} />
