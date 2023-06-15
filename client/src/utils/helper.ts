@@ -38,8 +38,7 @@ export const calcOrderTotalProducts = (orderItems: IOrderItem[]): number => {
 export const calcOrderProductTotal = (orderItems: IOrderItem[]): number => {
   const initialValue = 0;
   return orderItems.reduce(
-    (accumulator, item) =>
-      accumulator + calcOrderItemTotal(item.quantity, item.price),
+    (accumulator, item) => accumulator + item.price,
     initialValue
   );
 };
