@@ -12,7 +12,6 @@ export interface IProduct {
   inStock: number;
   price: number;
   title: string;
-  //_id?: string | null;
   _id: string;
 }
 
