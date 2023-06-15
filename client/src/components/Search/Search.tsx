@@ -14,7 +14,7 @@ const Search = () => {
 
   useEffect(() => {
     if (value?._id) {
-      navigate(`/${value?._id}`);
+      navigate(`/products/${value?._id}`);
       setValue(null);
     }
   }, [value, navigate]);
