@@ -7,11 +7,7 @@ import Modal from '@mui/material/Modal';
 
 import useFetch from '../../hooks/useFetch';
 import { IConfirmedOrder } from '../../interfaces/interfaces';
-import {
-  formatOrderDate,
-  calcOrderItemTotal,
-  calcOrderProductTotal,
-} from '../../utils/helper';
+import { formatOrderDate, calcOrderProductTotal } from '../../utils/helper';
 
 const style = {
   position: 'absolute',
@@ -96,9 +92,7 @@ const ConfirmationModal = ({
                     <Typography>
                       {item.quantity} x {item.product.title}
                     </Typography>
-                    <Typography>
-                      {calcOrderItemTotal(item.quantity, item.price)} SEK
-                    </Typography>
+                    <Typography>{item.price} SEK</Typography>
                   </ListItem>
                 ))}
               </List>
