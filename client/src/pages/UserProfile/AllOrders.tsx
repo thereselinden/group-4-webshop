@@ -22,14 +22,18 @@ const AllOrders = () => {
   const [filterOrderStatus, setFilterOrderStatus] =
     useState<string>('Alla ordrar');
 
+  const sortedOrders = orders?.sort((a, b) =>
+    a.createdAt < b.createdAt ? 1 : -1
+  );
+
   const filterOrders = () => {
     switch (filterOrderStatus) {
       case 'Skickade':
-        return orders?.filter(order => order.shipped) || [];
+        return sortedOrders?.filter(order => order.shipped) || [];
       case 'Ej skickade':
-        return orders?.filter(order => !order.shipped) || [];
+        return sortedOrders?.filter(order => !order.shipped) || [];
       default:
-        return orders || [];
+        return sortedOrders || [];
     }
   };
 
