@@ -7,14 +7,10 @@ import Modal from '@mui/material/Modal';
 
 import useFetch from '../../hooks/useFetch';
 import { IConfirmedOrder } from '../../interfaces/interfaces';
-import {
-  formatOrderDate,
-  calcOrderItemTotal,
-  calcOrderProductTotal,
-} from '../../utils/helper';
+import { formatOrderDate, calcOrderProductTotal } from '../../utils/helper';
 
 const style = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -38,9 +34,7 @@ const ConfirmationModal = ({
   handleConfirmationCloseModal,
   order,
 }: Props) => {
-  const [[confirmedOrder, setConfirmedOrder]] = useFetch<IConfirmedOrder>(
-    `/api/orders/${order}`
-  );
+  const [[confirmedOrder]] = useFetch<IConfirmedOrder>(`/api/orders/${order}`);
 
   let orderProductTotal = 0;
 
@@ -98,9 +92,7 @@ const ConfirmationModal = ({
                     <Typography>
                       {item.quantity} x {item.product.title}
                     </Typography>
-                    <Typography>
-                      {calcOrderItemTotal(item.quantity, item.price)} SEK
-                    </Typography>
+                    <Typography>{item.price} SEK</Typography>
                   </ListItem>
                 ))}
               </List>

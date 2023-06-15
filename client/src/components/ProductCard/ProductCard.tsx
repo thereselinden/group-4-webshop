@@ -20,7 +20,7 @@ const ProductCard = ({ product }: Props) => {
     addToCart(product, 1);
   };
   return (
-    <Link to={`/${product._id}`}>
+    <Link to={`/products/${product._id}`}>
       <Card sx={{ height: '100%' }}>
         <CardMedia
           component={'img'}

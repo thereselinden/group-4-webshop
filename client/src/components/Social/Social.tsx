@@ -15,10 +15,10 @@ const Social = () => {
         spacing={1}
         sx={{ justifyContent: 'center', mt: 1, gap: 0.5 }}
       >
-        <EmailIcon color="accent" />
-        <FacebookIcon color="accent" />
-        <InstagramIcon color="accent" />
-        <GitHubIcon color="accent" />
+        <EmailIcon />
+        <FacebookIcon />
+        <InstagramIcon />
+        <GitHubIcon />
       </Grid>
     </Box>
   );

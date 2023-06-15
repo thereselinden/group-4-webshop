@@ -4,10 +4,8 @@ import ProductList from '../../components/ProductList/ProductList';
 import { ICategory } from '../../interfaces/interfaces';
 import Typography from '@mui/material/Typography';
 
-type Props = {};
-
-const Category = (props: Props) => {
-  const { products, isLoading, getCategoryContext } = useProductContext();
+const Category = () => {
+  const { products, getCategoryContext } = useProductContext();
   const [searchParams] = useSearchParams();
 
   const catId = searchParams.get('category');

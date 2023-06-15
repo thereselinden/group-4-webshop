@@ -4,9 +4,7 @@ import Hero from '../../components/Hero/Hero';
 import ProductList from '../../components/ProductList/ProductList';
 import { useProductContext } from '../../context/ProductContext';
 
-type Props = {};
-
-const Home = (props: Props) => {
+const Home = () => {
   const { products } = useProductContext();
   return (
     <>

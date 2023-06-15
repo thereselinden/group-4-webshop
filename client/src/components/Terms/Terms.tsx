@@ -14,7 +14,7 @@ const Terms = () => {
           Villkor och regler
         </Link>
         <Link href="#" underline="hover" color="textColor">
-          Integritietspolicy
+          Integritetspolicy
         </Link>
         <Link href="#" underline="hover" color="textColor">
           Kontakt

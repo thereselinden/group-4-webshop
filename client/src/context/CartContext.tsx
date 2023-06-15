@@ -4,14 +4,7 @@ import { ICartContext, IProduct, ICartItem } from '../interfaces/interfaces';
 
 import { useLocalStorage } from '../utils/LocalStorage';
 
-export const CartContext = createContext<ICartContext>({
-  cartItems: [],
-  addToCart: () => {},
-  removeFromCart: () => {},
-  clearCart: () => {},
-  calcProductTotal: () => {},
-  numOfProducts: () => {},
-});
+export const CartContext = createContext<ICartContext>(null as any);
 
 export const useCartContext = () => useContext(CartContext);
 

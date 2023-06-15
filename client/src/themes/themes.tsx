@@ -12,6 +12,20 @@ declare module '@mui/material/styles' {
   }
 }
 
+declare module '@mui/material/styles' {
+  interface Theme {
+    color: {
+      yellow: string;
+    };
+  }
+  // allow configuration using `createTheme`
+  interface ThemeOptions {
+    color?: {
+      yellow?: string;
+    };
+  }
+}
+
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
     textColor: true;
@@ -23,6 +37,47 @@ declare module '@mui/material/IconButton' {
   interface IconButtonPropsColorOverrides {
     textColor: true;
     accent: true;
+  }
+}
+
+declare module '@mui/material/Badge' {
+  interface BadgePropsColorOverrides {
+    accent: true;
+  }
+}
+
+declare module '@mui/material/InputLabel' {
+  interface InputLabelClassesPropsColorOverrides {
+    textColor: true;
+  }
+}
+
+declare module '@mui/material/Checkbox' {
+  interface CheckboxPropsColorOverrides {
+    accent: true;
+  }
+}
+declare module '@mui/material/Radio' {
+  interface RadioPropsColorOverrides {
+    accent: true;
+  }
+}
+
+declare module '@mui/material/TextField' {
+  interface TextFieldPropsColorOverrides {
+    textColor: true;
+  }
+}
+
+declare module '@mui/material/InputBase' {
+  interface InputBasePropsColorOverrides {
+    textColor: true;
+  }
+}
+
+declare module '@mui/material/FormLabel' {
+  interface FormLabelPropsColorOverrides {
+    textColor: true;
   }
 }
 
@@ -43,5 +98,8 @@ export const theme = createTheme({
     fontWeightRegular: 400,
     fontWeightMedium: 500,
     fontWeightBold: 600,
+  },
+  color: {
+    yellow: yellow[600],
   },
 });

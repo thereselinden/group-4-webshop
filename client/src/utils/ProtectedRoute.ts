@@ -1,10 +1,10 @@
-import { PropsWithChildren, useEffect } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useUserContext } from '../context/UserContext';
 
 type Props = {
-  children: PropsWithChildren;
+  children: ReactElement;
 };
 
 const ProtectedRoute = ({ children }: Props) => {

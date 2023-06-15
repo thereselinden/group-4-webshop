@@ -28,7 +28,7 @@ const MainContent = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/category" element={<Category />} />
-        <Route path="/:id" element={<ProductDetails />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
         <Route
           path="/profile/*"
           element={
@@ -38,6 +38,7 @@ const MainContent = () => {
           }
         />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="*" element={<Home />} />
       </Routes>
     </Box>
   );

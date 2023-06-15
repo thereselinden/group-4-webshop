@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { useProductContext } from '../../context/ProductContext';
 import ProductModal from '../../components/ProductModal/ProductModal';
+import { IProductDialog } from '../../interfaces/interfaces';
 
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
@@ -15,14 +16,12 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 
-type Props = {};
-
-const AllProducts = (props: Props) => {
-  const [dialogOpen, setDialogOpen] = useState<any>({
+const AllProducts = () => {
+  const [dialogOpen, setDialogOpen] = useState<IProductDialog>({
     open: false,
     product: '',
   });
-  const [productId, setProductId] = useState<string | null>(null);
+  const [productId, setProductId] = useState<string>('');
 
   const { deleteProduct, products, setProductModal } = useProductContext();
 
@@ -36,7 +35,7 @@ const AllProducts = (props: Props) => {
   };
 
   const handleClose = () => {
-    setDialogOpen({ open: false });
+    setDialogOpen({ ...dialogOpen, open: false });
   };
 
   const handleDelete = (id: string) => {

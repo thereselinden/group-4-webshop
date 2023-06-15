@@ -12,7 +12,7 @@ export interface IProduct {
   inStock: number;
   price: number;
   title: string;
-  _id?: string | null;
+  _id: string;
 }
 
 export interface IProductContext {
@@ -26,6 +26,11 @@ export interface IProductContext {
   deleteProduct: (arg0: string) => void;
   updateProduct: (arg0: IProduct) => void;
   addProduct: (arg0: IProduct) => void;
+}
+
+export interface IProductDialog {
+  open: boolean;
+  product: string;
 }
 
 export interface ICartItem {

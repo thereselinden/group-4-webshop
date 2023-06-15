@@ -5,12 +5,12 @@ import ProductForm from '../Form/ProductForm';
 import { useProductContext } from '../../context/ProductContext';
 
 type Props = {
-  productId: string | null;
-  setProductId: (arg0: string | null) => void;
+  productId: string;
+  setProductId: (arg0: string) => void;
 };
 
 const style = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -25,7 +25,7 @@ const ProductModal = ({ productId, setProductId }: Props) => {
 
   const handleProductModal = () => {
     setProductModal(false);
-    setProductId(null);
+    setProductId('');
   };
 
   return (

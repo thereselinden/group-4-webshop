@@ -1,9 +1,7 @@
 import ProductForm from '../../components/Form/ProductForm';
 
-type Props = {};
-
-const AddProduct = (props: Props) => {
-  return <ProductForm />;
+const AddProduct = () => {
+  return <ProductForm productId={''} />;
 };
 
 export default AddProduct;

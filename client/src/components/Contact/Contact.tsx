@@ -12,7 +12,7 @@ const Contact = () => {
           justifyContent: 'center',
         }}
       >
-        <LocalPhoneIcon color="textColor" />
+        <LocalPhoneIcon />
         <Typography component="span">08-123 45 67</Typography>
       </Box>
     </Box>
