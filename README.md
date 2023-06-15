@@ -38,6 +38,7 @@ click provided localhost link in terminal
 - React
 - Typescript
 - React-Router-Dom
+- React-Hook-Form
 - MaterialUI
 - MongoDB
 
